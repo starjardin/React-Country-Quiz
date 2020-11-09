@@ -33872,10 +33872,11 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 const SINGLE_COUNTRY_API = "https://restcountries.eu/rest/v2/capital/";
 
 function Answers({
-  sortedRandomNumberArr,
+  arrSortedRandomNumber,
   countriesName,
   randomNumber1
 }) {
+  const [coutryCity, setCountryCity] = (0, _react.useState)('');
   const {
     capital
   } = (0, _reactRouterDom.useParams)();
@@ -33883,23 +33884,19 @@ function Answers({
   const fetchSingleCountry = async () => {
     const res = await fetch(SINGLE_COUNTRY_API + capital);
     const data = await res.json();
-    console.log(`name ${data[0].name} / capital ${data[0].capital}`);
-    console.log(data);
   };
 
   function handleClickToGetValue(e) {
-    console.log(e.target.dataset.value);
+    setCountryCity(e.target.dataset.value);
+    fetchSingleCountry();
   }
 
-  (0, _react.useEffect)(() => {
-    fetchSingleCountry();
-  }, []);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, sortedRandomNumberArr.map(map => /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: `/capital/${countriesName[randomNumber1].capital}`,
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, arrSortedRandomNumber.map(map => /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: `/capital/${coutryCity}`,
     key: countriesName[map].name
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "btn",
-    "data-value": countriesName[sortedRandomNumberArr[1]].name,
+    "data-value": countriesName[arrSortedRandomNumber[1]].name,
     onClick: handleClickToGetValue
   }, countriesName[map].name))));
 }
@@ -33945,19 +33942,19 @@ function App() {
   console.log(countriesName[randomNumber1].name);
   console.log(countriesName[randomNumber1].capital);
   const randomNumberArr = [randomNumber1, randomNumber4, randomNumber2, randomNumber3];
-  const sortedRandomNumberArr = randomNumberArr.sort((a, b) => b - a);
+  const arrSortedRandomNumber = randomNumberArr.sort((a, b) => b - a);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, countriesName[randomNumber1].capital, " is the capital of?"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_Ansewrs.default, {
     countriesName: countriesName,
-    sortedRandomNumberArr: sortedRandomNumberArr,
+    arrSortedRandomNumber: arrSortedRandomNumber,
     randomNumber1: randomNumber1
   })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/capital/:capital"
   }, /*#__PURE__*/_react.default.createElement(_Ansewrs.default, {
     countriesName: countriesName,
-    sortedRandomNumberArr: sortedRandomNumberArr,
+    arrSortedRandomNumber: arrSortedRandomNumber,
     randomNumber1: randomNumber1
   })))));
 }

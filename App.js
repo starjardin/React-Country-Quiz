@@ -23,7 +23,7 @@ export default function App () {
   console.log(countriesName[randomNumber1].name);
   console.log(countriesName[randomNumber1].capital);
   const randomNumberArr = [randomNumber1, randomNumber4, randomNumber2, randomNumber3]
-  const sortedRandomNumberArr = randomNumberArr.sort((a, b) => b - a);
+  const arrSortedRandomNumber = randomNumberArr.sort((a, b) => b - a);
 
   return (
     <>
@@ -33,14 +33,14 @@ export default function App () {
           <Route exact path="/">
             <Answers 
               countriesName={countriesName}
-              sortedRandomNumberArr={sortedRandomNumberArr}
+              arrSortedRandomNumber={arrSortedRandomNumber}
               randomNumber1={randomNumber1}
             />
           </Route>
           <Route path='/capital/:capital'>
             <Answers 
               countriesName={countriesName}
-              sortedRandomNumberArr={sortedRandomNumberArr}
+              arrSortedRandomNumber={arrSortedRandomNumber}
               randomNumber1={randomNumber1}
             />
           </Route>
