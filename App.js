@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Answers from './components/Ansewrs'
 import Header from './components/Header'
+import ButtonTryAgain from "./components/ButtonTryAgain"
 import Question from './components/Questions'
 
 const API_KEY = "https://restcountries.eu/rest/v2/all"
@@ -36,7 +37,7 @@ export default function App () {
     <>
       <Router >
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Header />
             <div className="container">
               {/* <Question 
@@ -52,6 +53,11 @@ export default function App () {
                 randomNumber1={randomNumber1}
               />
             </div>
+          </Route>
+          <Route path="/tryAgain">
+            <ButtonTryAgain
+              getCountries={getCountries}
+            />
           </Route>
         </Switch>
       </Router>

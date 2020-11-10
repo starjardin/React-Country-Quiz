@@ -32,4 +32,19 @@ h1 {
   height: 54px;
 }
 
+.tryagain {
+  background-image: url("/undraw_winners_ao2o 2.1b8fc39a.svg");
+  max-width: 464px;
+  height: 629px;
+  background-repeat: no-repeat;
+  margin: auto;
+  position: relative;
+}
+
+.tryagain button {
+  position: absolute;
+  bottom: 20%;
+  right: 2rem;
+}
+
 /*# sourceMappingURL=/styles.164d45a1.css.map */

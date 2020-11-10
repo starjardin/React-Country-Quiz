@@ -33863,19 +33863,25 @@ exports.default = ButtonNext;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _reactRouterDom = require("react-router-dom");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ButtonNext({
   getCountries,
-  IsAnswerCorrect
+  isAnswerCorrect
 }) {
-  console.log(IsAnswerCorrect);
-  return /*#__PURE__*/_react.default.createElement("button", {
+  console.log(isAnswerCorrect);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, isAnswerCorrect ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: getCountries,
     className: "next"
-  }, "Next");
+  }, "Next") : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/tryAgain"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "next"
+  }, "Next")));
 }
-},{"react":"node_modules/react/index.js"}],"components/Ansewrs.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"components/Ansewrs.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33901,7 +33907,7 @@ function Answers({
   randomNumber1,
   getCountries
 }) {
-  const [IsAnswerCorrect, setIsAnswerCorrect] = (0, _react.useState)(false);
+  const [isAnswerCorrect, setIsAnswerCorrect] = (0, _react.useState)(false);
   const [isQuestionAnswered, setIsQuestionAnswered] = (0, _react.useState)(false);
 
   function handleAnswers(e) {
@@ -33924,7 +33930,7 @@ function Answers({
     }
   }
 
-  console.log(IsAnswerCorrect);
+  console.log(isAnswerCorrect);
   console.log(isQuestionAnswered);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, arrOfSortedRandomNumber.map(indexArr => /*#__PURE__*/_react.default.createElement("button", {
     key: countriesName[indexArr].name,
@@ -33933,7 +33939,7 @@ function Answers({
     onClick: handleAnswers
   }, countriesName[indexArr].name)), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
     getCountries: getCountries,
-    IsAnswerCorrect: IsAnswerCorrect
+    isAnswerCorrect: isAnswerCorrect
   }));
 }
 },{"react":"node_modules/react/index.js","./ButtonNext":"components/ButtonNext.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"components/Header.js":[function(require,module,exports) {
@@ -33951,7 +33957,32 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Header() {
   return /*#__PURE__*/_react.default.createElement("h1", null, "Country Quiz");
 }
-},{"react":"node_modules/react/index.js"}],"components/Questions.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"components/ButtonTryAgain.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ButtonNext;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ButtonNext({
+  getCountries
+}) {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "tryagain"
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    onClick: getCountries
+  }, "Try again"))));
+}
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"components/Questions.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33989,6 +34020,8 @@ var _Ansewrs = _interopRequireDefault(require("./components/Ansewrs"));
 
 var _Header = _interopRequireDefault(require("./components/Header"));
 
+var _ButtonTryAgain = _interopRequireDefault(require("./components/ButtonTryAgain"));
+
 var _Questions = _interopRequireDefault(require("./components/Questions"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -34022,6 +34055,7 @@ function App() {
   const arrOfSortedRandomNumber = randomNumberArr.sort((a, b) => b - a);
   const randomQuestionNumber = Math.floor(Math.random() * 2);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    exact: true,
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
@@ -34030,7 +34064,11 @@ function App() {
     countriesName: countriesName,
     arrOfSortedRandomNumber: arrOfSortedRandomNumber,
     randomNumber1: randomNumber1
-  }))))));
+  }))), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "/tryAgain"
+  }, /*#__PURE__*/_react.default.createElement(_ButtonTryAgain.default, {
+    getCountries: getCountries
+  })))));
 }
 /*
 TODO
@@ -34044,7 +34082,7 @@ TODO
     1  //if it is true // then take them to the next questions
     2  //if it is false // take them to try again
 */
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Ansewrs":"components/Ansewrs.js","./components/Header":"components/Header.js","./components/Questions":"components/Questions.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Ansewrs":"components/Ansewrs.js","./components/Header":"components/Header.js","./components/ButtonTryAgain":"components/ButtonTryAgain.js","./components/Questions":"components/Questions.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

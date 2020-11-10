@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Answers ({ arrOfSortedRandomNumber, countriesName, randomNumber1, getCountries }) {
 
-  const [ IsAnswerCorrect, setIsAnswerCorrect ] = useState(false)
+  const [ isAnswerCorrect, setIsAnswerCorrect ] = useState(false)
   const [ isQuestionAnswered, setIsQuestionAnswered ] = useState(false)
 
   function handleAnswers (e) {
@@ -26,7 +26,7 @@ export default function Answers ({ arrOfSortedRandomNumber, countriesName, rando
     }
   }
 
-  console.log(IsAnswerCorrect);
+  console.log(isAnswerCorrect);
   console.log(isQuestionAnswered);
 
   return (
@@ -44,7 +44,7 @@ export default function Answers ({ arrOfSortedRandomNumber, countriesName, rando
       {isQuestionAnswered && 
         <ButtonNext 
           getCountries={getCountries}
-          IsAnswerCorrect={IsAnswerCorrect}
+          isAnswerCorrect={isAnswerCorrect}
       />}
     </>
   )
