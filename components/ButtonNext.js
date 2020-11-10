@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
-export default function ButtonNext ({ getCountries, isAnswerCorrect }) {
-  console.log(isAnswerCorrect);
+export default function ButtonNext ({ getCountries, isAnswerCorrect, counter,
+setCounter }) {
+  
+  function handleClick () {
+    getCountries()
+    setCounter(prev => prev + 1)
+  }
+
   return (
     <>
     {isAnswerCorrect ? 
       <button 
-        onClick={getCountries}
+        onClick={handleClick}
         className="next"
       >
         Next

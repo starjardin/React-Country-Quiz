@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import ButtonNext from "./ButtonNext"
-import { Link } from 'react-router-dom'
 
-export default function Answers ({ arrOfSortedRandomNumber, countriesName, randomNumber1, getCountries }) {
+export default function Answers ({ arrOfSortedRandomNumber, countriesName, randomNumber1, getCountries, counter, setCounter }) {
 
   const [ isAnswerCorrect, setIsAnswerCorrect ] = useState(false)
   const [ isQuestionAnswered, setIsQuestionAnswered ] = useState(false)
@@ -10,7 +9,7 @@ export default function Answers ({ arrOfSortedRandomNumber, countriesName, rando
   function handleAnswers (e) {
     setIsQuestionAnswered(true)
     const container = e.target.parentElement
-    const buttons = Array.from(container.querySelectorAll("button"))
+    const buttons = Array.from(container.querySelectorAll(".btn"))
     buttons.map(button => button.setAttribute("disabled", ""))
 
     if ((countriesName[randomNumber1].name) === (e.target.dataset.value)) {
@@ -36,7 +35,7 @@ export default function Answers ({ arrOfSortedRandomNumber, countriesName, rando
       {arrOfSortedRandomNumber.map(indexArr => (
           <button 
             key={countriesName[indexArr].name}
-            className="btn"
+            className="btn answers"
             data-value={countriesName[indexArr].name}
             onClick={handleAnswers}
           >
@@ -47,6 +46,8 @@ export default function Answers ({ arrOfSortedRandomNumber, countriesName, rando
         <ButtonNext 
           getCountries={getCountries}
           isAnswerCorrect={isAnswerCorrect}
+          counter={counter}
+          setCounter={setCounter}
       />}
     </>
   )

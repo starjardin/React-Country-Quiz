@@ -1,7 +1,7 @@
-// html {
-//   background-image: url("./assets/background.png");
-//   background-repeat: no-repeat;
-// }
+html {
+  background-image: url("./assets/background.png");
+  background-repeat: no-repeat;
+}
 
 h1 {
   color: #ffffff;
@@ -24,12 +24,34 @@ h1 {
 
 .correct,
 .correct:hover {
+  position: relative;
   background-color: #60BF88;
+}
+
+.correct::after,
+.incorrect::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+}
+
+.correct::after {
+  background-image: url('./assets/check-circle.svg');
 }
 
 .incorrect,
 .incorrect:focus {
-  background-color: #EA8282;
+  position: relative;
+  background-color: #F9A826;
+}
+
+.incorrect::after {
+  background-image: url('./assets/x-circle.svg');
 }
 
 .flag {
@@ -37,16 +59,17 @@ h1 {
   height: 54px;
 }
 
-// .container {
-//   background-color: #ffffff;
-//   padding: 1.5rem;
-//   border-radius: 5px;
-      // max-width: 464px;
-      // margin: auto;
-// }
+.container {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 5px;
+  max-width: 464px;
+  margin: auto;
+  position : relatives;
+}
 
 .tryagain {
-  background-image: url("./assets/undraw_winners_ao2o\ 2.svg");
+  background-image: url("./assets/winners.svg");
   max-width: 464px;
   height: 629px;
   background-repeat: no-repeat;
@@ -70,8 +93,28 @@ h1 {
   padding-inline: 3.5rem;
 }
 
+.next {
+  background: #F9A826;
+  box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
+  border-radius: 12px;
+  padding-inline: 36px;
+  padding-block: 15px;
+  position: absolute;
+  right: 16%;
+}
+
 .tryagain button:hover,
 .next:hover {
   background-color: #F9A826;
   cursor: pointer;
+}
+
+.btn.answers {
+  color: rgba(96, 102, 208, 0.7);
+  transition: .3s;
+}
+
+.btn.answers:hover {
+  color : #ffffff;
+  transform: scale(1.02);
 }

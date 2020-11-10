@@ -9,6 +9,7 @@ const API_KEY = "https://restcountries.eu/rest/v2/all"
 
 export default function App () {
   const [countriesName, setCountriesName] = useState([])
+  const [counter, setCounter] = useState(0)
 
   const getCountries = async () => {
     const res = await fetch(API_KEY)
@@ -40,23 +41,26 @@ export default function App () {
           <Route exact path="/">
             <Header />
             <div className="container">
-              {/* <Question 
+              <Question 
                 randomQuestionNumber={randomQuestionNumber}
                 randomNumber1={randomNumber1}
                 countriesName={countriesName}
-              /> */}
-              <h2>{countriesName[randomNumber1].capital} is the capital of?</h2>
+              />
+              {/* <h2>{countriesName[randomNumber1].capital} is the capital of?</h2> */}
               <Answers 
                 getCountries={getCountries}
                 countriesName={countriesName}
                 arrOfSortedRandomNumber={arrOfSortedRandomNumber}
                 randomNumber1={randomNumber1}
+                counter={counter}
+                setCounter={setCounter}
               />
             </div>
           </Route>
           <Route path="/tryAgain">
             <ButtonTryAgain
               getCountries={getCountries}
+              counter={counter}
             />
           </Route>
         </Switch>

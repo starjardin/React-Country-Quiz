@@ -33861,19 +33861,27 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = ButtonNext;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ButtonNext({
   getCountries,
-  isAnswerCorrect
+  isAnswerCorrect,
+  counter,
+  setCounter
 }) {
-  console.log(isAnswerCorrect);
+  function handleClick() {
+    getCountries();
+    setCounter(prev => prev + 1);
+  }
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, isAnswerCorrect ? /*#__PURE__*/_react.default.createElement("button", {
-    onClick: getCountries,
+    onClick: handleClick,
     className: "next"
   }, "Next") : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/tryAgain"
@@ -33893,8 +33901,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _ButtonNext = _interopRequireDefault(require("./ButtonNext"));
 
-var _reactRouterDom = require("react-router-dom");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -33905,7 +33911,9 @@ function Answers({
   arrOfSortedRandomNumber,
   countriesName,
   randomNumber1,
-  getCountries
+  getCountries,
+  counter,
+  setCounter
 }) {
   const [isAnswerCorrect, setIsAnswerCorrect] = (0, _react.useState)(false);
   const [isQuestionAnswered, setIsQuestionAnswered] = (0, _react.useState)(false);
@@ -33913,7 +33921,7 @@ function Answers({
   function handleAnswers(e) {
     setIsQuestionAnswered(true);
     const container = e.target.parentElement;
-    const buttons = Array.from(container.querySelectorAll("button"));
+    const buttons = Array.from(container.querySelectorAll(".btn"));
     buttons.map(button => button.setAttribute("disabled", ""));
 
     if (countriesName[randomNumber1].name === e.target.dataset.value) {
@@ -33935,15 +33943,17 @@ function Answers({
   console.log(isQuestionAnswered);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, arrOfSortedRandomNumber.map(indexArr => /*#__PURE__*/_react.default.createElement("button", {
     key: countriesName[indexArr].name,
-    className: "btn",
+    className: "btn answers",
     "data-value": countriesName[indexArr].name,
     onClick: handleAnswers
   }, countriesName[indexArr].name)), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
     getCountries: getCountries,
-    isAnswerCorrect: isAnswerCorrect
+    isAnswerCorrect: isAnswerCorrect,
+    counter: counter,
+    setCounter: setCounter
   }));
 }
-},{"react":"node_modules/react/index.js","./ButtonNext":"components/ButtonNext.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"components/Header.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./ButtonNext":"components/ButtonNext.js"}],"components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33973,11 +33983,15 @@ var _reactRouterDom = require("react-router-dom");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ButtonNext({
-  getCountries
+  getCountries,
+  counter
 }) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "tryagain"
-  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: "./../assets/winners.svg",
+    alt: "winner"
+  }), /*#__PURE__*/_react.default.createElement("h3", null, "Results"), /*#__PURE__*/_react.default.createElement("p", null, "You got ", counter, " correct answers"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/"
   }, /*#__PURE__*/_react.default.createElement("button", {
     onClick: getCountries
@@ -34035,6 +34049,7 @@ const API_KEY = "https://restcountries.eu/rest/v2/all";
 
 function App() {
   const [countriesName, setCountriesName] = (0, _react.useState)([]);
+  const [counter, setCounter] = (0, _react.useState)(0);
 
   const getCountries = async () => {
     const res = await fetch(API_KEY);
@@ -34060,15 +34075,22 @@ function App() {
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
-  }, /*#__PURE__*/_react.default.createElement("h2", null, countriesName[randomNumber1].capital, " is the capital of?"), /*#__PURE__*/_react.default.createElement(_Ansewrs.default, {
+  }, /*#__PURE__*/_react.default.createElement(_Questions.default, {
+    randomQuestionNumber: randomQuestionNumber,
+    randomNumber1: randomNumber1,
+    countriesName: countriesName
+  }), /*#__PURE__*/_react.default.createElement(_Ansewrs.default, {
     getCountries: getCountries,
     countriesName: countriesName,
     arrOfSortedRandomNumber: arrOfSortedRandomNumber,
-    randomNumber1: randomNumber1
+    randomNumber1: randomNumber1,
+    counter: counter,
+    setCounter: setCounter
   }))), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/tryAgain"
   }, /*#__PURE__*/_react.default.createElement(_ButtonTryAgain.default, {
-    getCountries: getCountries
+    getCountries: getCountries,
+    counter: counter
   })))));
 }
 /*
