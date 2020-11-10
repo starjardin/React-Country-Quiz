@@ -33912,6 +33912,9 @@ function Answers({
 
   function handleAnswers(e) {
     setIsQuestionAnswered(true);
+    const container = e.target.parentElement;
+    const buttons = Array.from(container.querySelectorAll("button"));
+    buttons.map(button => button.setAttribute("disabled", ""));
 
     if (countriesName[randomNumber1].name === e.target.dataset.value) {
       setIsAnswerCorrect(true);
@@ -33923,10 +33926,8 @@ function Answers({
       const rightAnswer = countriesName[indexOfTheRightAnswer].name;
       setIsAnswerCorrect(false);
       e.target.classList.add("incorrect");
-      const container = e.target.parentElement;
-      const buttons = Array.from(container.querySelectorAll("button"));
-      const rightButton = buttons.find(button => button.dataset.value == rightAnswer);
-      rightButton.classList.add("correct");
+      const buttonwithTheCorrectAnswer = buttons.find(button => button.dataset.value == rightAnswer);
+      buttonwithTheCorrectAnswer.classList.add("correct");
     }
   }
 
@@ -34122,7 +34123,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49753" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49682" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

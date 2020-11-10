@@ -58,4 +58,20 @@ h1 {
   position: absolute;
   bottom: 20%;
   right: 2rem;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  color: #1D355D;
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding-block: 1rem;
+  padding-inline: 3.5rem;
+}
+
+.tryagain button:hover,
+.next:hover {
+  background-color: #F9A826;
+  cursor: pointer;
 }

@@ -9,6 +9,10 @@ export default function Answers ({ arrOfSortedRandomNumber, countriesName, rando
 
   function handleAnswers (e) {
     setIsQuestionAnswered(true)
+    const container = e.target.parentElement
+    const buttons = Array.from(container.querySelectorAll("button"))
+    buttons.map(button => button.setAttribute("disabled", ""))
+
     if ((countriesName[randomNumber1].name) === (e.target.dataset.value)) {
       setIsAnswerCorrect(true)
       e.target.classList.add("correct")
@@ -19,10 +23,8 @@ export default function Answers ({ arrOfSortedRandomNumber, countriesName, rando
       const rightAnswer = countriesName[indexOfTheRightAnswer].name
       setIsAnswerCorrect(false)
       e.target.classList.add("incorrect")
-      const container = e.target.parentElement
-      const buttons = Array.from(container.querySelectorAll("button"))
-      const rightButton = buttons.find(button => button.dataset.value == rightAnswer)
-      rightButton.classList.add("correct")
+      const buttonwithTheCorrectAnswer = buttons.find(button => button.dataset.value == rightAnswer)
+      buttonwithTheCorrectAnswer.classList.add("correct")
     }
   }
 
