@@ -22,30 +22,18 @@ export default function App () {
   if (!countriesName.length) return null
   console.log(countriesName[randomNumber1].name);
   console.log(countriesName[randomNumber1].capital);
+
   const randomNumberArr = [randomNumber1, randomNumber4, randomNumber2, randomNumber3]
-  const arrSortedRandomNumber = randomNumberArr.sort((a, b) => b - a);
+  const arrOfSortedRandomNumber = randomNumberArr.sort((a, b) => b - a);
 
   return (
     <>
       <h2>{countriesName[randomNumber1].capital} is the capital of?</h2>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Answers 
-              countriesName={countriesName}
-              arrSortedRandomNumber={arrSortedRandomNumber}
-              randomNumber1={randomNumber1}
-            />
-          </Route>
-          <Route path='/capital/:capital'>
-            <Answers 
-              countriesName={countriesName}
-              arrSortedRandomNumber={arrSortedRandomNumber}
-              randomNumber1={randomNumber1}
-            />
-          </Route>
-        </Switch>
-      </Router>
+      <Answers 
+        countriesName={countriesName}
+        arrOfSortedRandomNumber={arrOfSortedRandomNumber}
+        randomNumber1={randomNumber1}
+      />
     </>
   )
 }

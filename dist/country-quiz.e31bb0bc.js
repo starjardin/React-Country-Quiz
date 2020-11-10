@@ -33863,44 +33863,38 @@ exports.default = Answers;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _reactRouterDom = require("react-router-dom");
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-const SINGLE_COUNTRY_API = "https://restcountries.eu/rest/v2/capital/";
-
 function Answers({
-  arrSortedRandomNumber,
+  arrOfSortedRandomNumber,
   countriesName,
   randomNumber1
 }) {
-  const [coutryCity, setCountryCity] = (0, _react.useState)('');
-  const {
-    capital
-  } = (0, _reactRouterDom.useParams)();
-
-  const fetchSingleCountry = async () => {
-    const res = await fetch(SINGLE_COUNTRY_API + capital);
-    const data = await res.json();
-  };
-
   function handleClickToGetValue(e) {
-    setCountryCity(e.target.dataset.value);
-    fetchSingleCountry();
+    console.log(e.target.dataset.value);
+    console.log(countriesName[randomNumber1].name);
+
+    if (countriesName[randomNumber1].name === e.target.dataset.value) {
+      console.log("Hey correct");
+    } else {
+      const indexOfTheRightAnswer = arrOfSortedRandomNumber.find(index => {
+        return countriesName[index].name === countriesName[randomNumber1].name;
+      });
+      const rightAnswer = countriesName[indexOfTheRightAnswer].name;
+      console.log(`The right answer is ${rightAnswer}`);
+    }
   }
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, arrSortedRandomNumber.map(map => /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: `/capital/${coutryCity}`,
-    key: countriesName[map].name
-  }, /*#__PURE__*/_react.default.createElement("button", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, arrOfSortedRandomNumber.map(indexArr => /*#__PURE__*/_react.default.createElement("button", {
+    key: countriesName[indexArr].name,
     className: "btn",
-    "data-value": countriesName[arrSortedRandomNumber[1]].name,
+    "data-value": countriesName[indexArr].name,
     onClick: handleClickToGetValue
-  }, countriesName[map].name))));
+  }, countriesName[indexArr].name)));
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33942,21 +33936,12 @@ function App() {
   console.log(countriesName[randomNumber1].name);
   console.log(countriesName[randomNumber1].capital);
   const randomNumberArr = [randomNumber1, randomNumber4, randomNumber2, randomNumber3];
-  const arrSortedRandomNumber = randomNumberArr.sort((a, b) => b - a);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, countriesName[randomNumber1].capital, " is the capital of?"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
-    exact: true,
-    path: "/"
-  }, /*#__PURE__*/_react.default.createElement(_Ansewrs.default, {
+  const arrOfSortedRandomNumber = randomNumberArr.sort((a, b) => b - a);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, countriesName[randomNumber1].capital, " is the capital of?"), /*#__PURE__*/_react.default.createElement(_Ansewrs.default, {
     countriesName: countriesName,
-    arrSortedRandomNumber: arrSortedRandomNumber,
+    arrOfSortedRandomNumber: arrOfSortedRandomNumber,
     randomNumber1: randomNumber1
-  })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
-    path: "/capital/:capital"
-  }, /*#__PURE__*/_react.default.createElement(_Ansewrs.default, {
-    countriesName: countriesName,
-    arrSortedRandomNumber: arrSortedRandomNumber,
-    randomNumber1: randomNumber1
-  })))));
+  }));
 }
 /*
 TODO
@@ -34010,7 +33995,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63994" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49753" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

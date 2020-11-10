@@ -1,36 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import React, { useState } from 'react'
 
-const SINGLE_COUNTRY_API = "https://restcountries.eu/rest/v2/capital/"
-
-export default function Answers ({ arrSortedRandomNumber, countriesName, randomNumber1 }) {
-  const [coutryCity, setCountryCity] = useState('')
-  const { capital } = useParams()
-  
-  const fetchSingleCountry = async() => {
-    const res = await fetch(SINGLE_COUNTRY_API + capital)
-    const data = await res.json()
-  }
-
+export default function Answers ({ arrOfSortedRandomNumber, countriesName, randomNumber1 }) {
   function handleClickToGetValue (e) {
-    setCountryCity(e.target.dataset.value)
-    fetchSingleCountry()
+    console.log(e.target.dataset.value)
+    console.log(countriesName[randomNumber1].name)
+    if ((countriesName[randomNumber1].name) === (e.target.dataset.value)) {
+      console.log("Hey correct")
+    } else {
+      const indexOfTheRightAnswer = arrOfSortedRandomNumber.find(index => {
+        return countriesName[index].name === countriesName[randomNumber1].name
+      });
+      const rightAnswer = countriesName[indexOfTheRightAnswer].name
+      console.log(`The right answer is ${rightAnswer}`)
+    }
   }
 
   return (
     <>
-      {arrSortedRandomNumber.map(map => (
-        <Link 
-          to={`/capital/${coutryCity}`} 
-          key={countriesName[map].name}>
+      {arrOfSortedRandomNumber.map(indexArr => (
           <button 
+            key={countriesName[indexArr].name}
             className="btn"
-            data-value={countriesName[arrSortedRandomNumber[1]].name}
+            data-value={countriesName[indexArr].name}
             onClick={handleClickToGetValue}
           >
-            {countriesName[map].name}
+            {countriesName[indexArr].name}
           </button>
-        </Link>
       ))}
     </>
   )
