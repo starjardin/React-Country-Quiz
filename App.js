@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Answers from './components/Ansewrs'
+import Header from './components/Header'
+import Question from './components/Questions'
+
 const API_KEY = "https://restcountries.eu/rest/v2/all"
+
 export default function App () {
   const [countriesName, setCountriesName] = useState([])
 
@@ -20,20 +24,37 @@ export default function App () {
   const randomNumber3 = Math.floor(Math.random() * countriesName.length)
   const randomNumber4 = Math.floor(Math.random() * countriesName.length)
   if (!countriesName.length) return null
+
   console.log(countriesName[randomNumber1].name);
   console.log(countriesName[randomNumber1].capital);
 
   const randomNumberArr = [randomNumber1, randomNumber4, randomNumber2, randomNumber3]
   const arrOfSortedRandomNumber = randomNumberArr.sort((a, b) => b - a);
+  const randomQuestionNumber = Math.floor(Math.random() * 2)
 
   return (
     <>
-      <h2>{countriesName[randomNumber1].capital} is the capital of?</h2>
-      <Answers 
-        countriesName={countriesName}
-        arrOfSortedRandomNumber={arrOfSortedRandomNumber}
-        randomNumber1={randomNumber1}
-      />
+      <Router >
+        <Switch>
+          <Route path="/">
+            <Header />
+            <div className="container">
+              {/* <Question 
+                randomQuestionNumber={randomQuestionNumber}
+                randomNumber1={randomNumber1}
+                countriesName={countriesName}
+              /> */}
+              <h2>{countriesName[randomNumber1].capital} is the capital of?</h2>
+              <Answers 
+                getCountries={getCountries}
+                countriesName={countriesName}
+                arrOfSortedRandomNumber={arrOfSortedRandomNumber}
+                randomNumber1={randomNumber1}
+              />
+            </div>
+          </Route>
+        </Switch>
+      </Router>
     </>
   )
 }

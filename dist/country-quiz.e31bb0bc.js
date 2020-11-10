@@ -33853,7 +33853,29 @@ if ("development" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"components/Ansewrs.js":[function(require,module,exports) {
+},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"components/ButtonNext.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ButtonNext;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ButtonNext({
+  getCountries,
+  IsAnswerCorrect
+}) {
+  console.log(IsAnswerCorrect);
+  return /*#__PURE__*/_react.default.createElement("button", {
+    onClick: getCountries,
+    className: "next"
+  }, "Next");
+}
+},{"react":"node_modules/react/index.js"}],"components/Ansewrs.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33863,6 +33885,12 @@ exports.default = Answers;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _ButtonNext = _interopRequireDefault(require("./ButtonNext"));
+
+var _reactRouterDom = require("react-router-dom");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -33870,29 +33898,80 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function Answers({
   arrOfSortedRandomNumber,
   countriesName,
-  randomNumber1
+  randomNumber1,
+  getCountries
 }) {
-  function handleClickToGetValue(e) {
-    console.log(e.target.dataset.value);
-    console.log(countriesName[randomNumber1].name);
+  const [IsAnswerCorrect, setIsAnswerCorrect] = (0, _react.useState)(false);
+  const [isQuestionAnswered, setIsQuestionAnswered] = (0, _react.useState)(false);
+
+  function handleAnswers(e) {
+    setIsQuestionAnswered(true);
 
     if (countriesName[randomNumber1].name === e.target.dataset.value) {
-      console.log("Hey correct");
+      setIsAnswerCorrect(true);
+      e.target.classList.add("correct");
     } else {
       const indexOfTheRightAnswer = arrOfSortedRandomNumber.find(index => {
         return countriesName[index].name === countriesName[randomNumber1].name;
       });
       const rightAnswer = countriesName[indexOfTheRightAnswer].name;
-      console.log(`The right answer is ${rightAnswer}`);
+      setIsAnswerCorrect(false);
+      e.target.classList.add("incorrect");
+      const container = e.target.parentElement;
+      const buttons = Array.from(container.querySelectorAll("button"));
+      const rightButton = buttons.find(button => button.dataset.value == rightAnswer);
+      rightButton.classList.add("correct");
     }
   }
 
+  console.log(IsAnswerCorrect);
+  console.log(isQuestionAnswered);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, arrOfSortedRandomNumber.map(indexArr => /*#__PURE__*/_react.default.createElement("button", {
     key: countriesName[indexArr].name,
     className: "btn",
     "data-value": countriesName[indexArr].name,
-    onClick: handleClickToGetValue
-  }, countriesName[indexArr].name)));
+    onClick: handleAnswers
+  }, countriesName[indexArr].name)), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
+    getCountries: getCountries,
+    IsAnswerCorrect: IsAnswerCorrect
+  }));
+}
+},{"react":"node_modules/react/index.js","./ButtonNext":"components/ButtonNext.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"components/Header.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Header;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Header() {
+  return /*#__PURE__*/_react.default.createElement("h1", null, "Country Quiz");
+}
+},{"react":"node_modules/react/index.js"}],"components/Questions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Question;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Question({
+  randomQuestionNumber,
+  randomNumber1,
+  countriesName
+}) {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, randomQuestionNumber === 0 ? /*#__PURE__*/_react.default.createElement("h2", null, countriesName[randomNumber1].capital && countriesName[randomNumber1].capital, " is the capital of?") : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+    src: countriesName[randomNumber1].flag,
+    className: "flag"
+  }), /*#__PURE__*/_react.default.createElement("h2", null, "Which country does this flag belong to?")));
 }
 },{"react":"node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
@@ -33907,6 +33986,10 @@ var _react = _interopRequireWildcard(require("react"));
 var _reactRouterDom = require("react-router-dom");
 
 var _Ansewrs = _interopRequireDefault(require("./components/Ansewrs"));
+
+var _Header = _interopRequireDefault(require("./components/Header"));
+
+var _Questions = _interopRequireDefault(require("./components/Questions"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33937,11 +34020,17 @@ function App() {
   console.log(countriesName[randomNumber1].capital);
   const randomNumberArr = [randomNumber1, randomNumber4, randomNumber2, randomNumber3];
   const arrOfSortedRandomNumber = randomNumberArr.sort((a, b) => b - a);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, countriesName[randomNumber1].capital, " is the capital of?"), /*#__PURE__*/_react.default.createElement(_Ansewrs.default, {
+  const randomQuestionNumber = Math.floor(Math.random() * 2);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "/"
+  }, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/_react.default.createElement("h2", null, countriesName[randomNumber1].capital, " is the capital of?"), /*#__PURE__*/_react.default.createElement(_Ansewrs.default, {
+    getCountries: getCountries,
     countriesName: countriesName,
     arrOfSortedRandomNumber: arrOfSortedRandomNumber,
     randomNumber1: randomNumber1
-  }));
+  }))))));
 }
 /*
 TODO
@@ -33955,7 +34044,7 @@ TODO
     1  //if it is true // then take them to the next questions
     2  //if it is false // take them to try again
 */
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Ansewrs":"components/Ansewrs.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Ansewrs":"components/Ansewrs.js","./components/Header":"components/Header.js","./components/Questions":"components/Questions.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

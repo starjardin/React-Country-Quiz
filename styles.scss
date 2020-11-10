@@ -1,6 +1,46 @@
+// html {
+//   background-image: url("./assets/background.png");
+//   background-repeat: no-repeat;
+// }
+
+h1 {
+  color: #ffffff;
+}
+
 .btn {
   display: block;
   margin-block: 1rem;
   width: 100%;
   padding-block: 1rem;
+  background: #FFFFFF;
+  border: 2px solid rgba(96, 102, 208, 0.7);
+  box-sizing: border-box;
+  border-radius: 12px;
 }
+
+.btn:hover {
+  background-color: #F9A826;
+}
+
+.correct,
+.correct:hover {
+  background-color: #60BF88;
+}
+
+.incorrect,
+.incorrect:focus {
+  background-color: #EA8282;
+}
+
+.flag {
+  width: 84px;
+  height: 54px;
+}
+
+// .container {
+//   background-color: #ffffff;
+//   padding: 1.5rem;
+//   border-radius: 5px;
+      // max-width: 464px;
+      // margin: auto;
+// }

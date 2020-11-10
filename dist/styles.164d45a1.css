@@ -1,8 +1,35 @@
+h1 {
+  color: #ffffff;
+}
+
 .btn {
   display: block;
   margin-block: 1rem;
   width: 100%;
   padding-block: 1rem;
+  background: #FFFFFF;
+  border: 2px solid rgba(96, 102, 208, 0.7);
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+
+.btn:hover {
+  background-color: #F9A826;
+}
+
+.correct,
+.correct:hover {
+  background-color: #60BF88;
+}
+
+.incorrect,
+.incorrect:focus {
+  background-color: #EA8282;
+}
+
+.flag {
+  width: 84px;
+  height: 54px;
 }
 
 /*# sourceMappingURL=/styles.164d45a1.css.map */
