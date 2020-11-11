@@ -1,6 +1,9 @@
 html {
   background-image: url("/background.f2f908d8.png");
   background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
 }
 
 h1 {
@@ -45,9 +48,10 @@ h1 {
 }
 
 .incorrect,
-.incorrect:focus {
+.incorrect:focus,
+.incorrect:hover {
   position: relative;
-  background-color: #F9A826;
+  background-color: #EA8282;
 }
 
 .incorrect::after {

@@ -1,6 +1,19 @@
 import React from 'react'
 
-export default function Question ({ randomQuestionNumber ,randomNumber1, countriesName }) {
+export default function Question ({ 
+  randomNumber1, 
+  countriesName, 
+  getCountries
+ }) {
+  const randomQuestionNumber = Math.floor(Math.random() * 2)
+
+  if ((!countriesName[randomNumber1].capital) || 
+      (!countriesName[randomNumber1].flag)
+  ) {
+    getCountries()
+  }
+
+
   return (
     <>
       {randomQuestionNumber === 0  

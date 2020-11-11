@@ -46,6 +46,7 @@ export default function Answers ({ arrOfSortedRandomNumber, countriesName, rando
         <ButtonNext 
           getCountries={getCountries}
           isAnswerCorrect={isAnswerCorrect}
+          setIsQuestionAnswered={setIsQuestionAnswered}
           counter={counter}
           setCounter={setCounter}
       />}
