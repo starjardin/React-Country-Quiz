@@ -34053,7 +34053,7 @@ function Question({
     className: "question"
   }, "Which country does this flag belong to?")));
 }
-},{"react":"node_modules/react/index.js"}],"useDataFetcher.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"utility/useDataFetcher.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34105,7 +34105,7 @@ function TopRightImage() {
     className: "adventure"
   });
 }
-},{"react":"node_modules/react/index.js","./../assets/adventure.svg":"assets/adventure.svg"}],"useRandomNumber.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./../assets/adventure.svg":"assets/adventure.svg"}],"utility/useRandomNumber.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34135,7 +34135,7 @@ function useRandomNumber() {
     sortedRandomNumber
   };
 }
-},{"./useDataFetcher":"useDataFetcher.js"}],"App.js":[function(require,module,exports) {
+},{"./useDataFetcher":"utility/useDataFetcher.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34155,11 +34155,11 @@ var _ButtonTryAgain = _interopRequireDefault(require("./components/ButtonTryAgai
 
 var _Questions = _interopRequireDefault(require("./components/Questions"));
 
-var _useDataFetcher = _interopRequireDefault(require("./useDataFetcher"));
+var _useDataFetcher = _interopRequireDefault(require("./utility/useDataFetcher"));
 
 var _TopRightImage = _interopRequireDefault(require("./components/TopRightImage"));
 
-var _useRandomNumber = _interopRequireDefault(require("./useRandomNumber"));
+var _useRandomNumber = _interopRequireDefault(require("./utility/useRandomNumber"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34212,7 +34212,7 @@ function App() {
     setCounter: setCounter
   }))))));
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Ansewrs":"components/Ansewrs.js","./components/Header":"components/Header.js","./components/ButtonTryAgain":"components/ButtonTryAgain.js","./components/Questions":"components/Questions.js","./useDataFetcher":"useDataFetcher.js","./components/TopRightImage":"components/TopRightImage.js","./useRandomNumber":"useRandomNumber.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Ansewrs":"components/Ansewrs.js","./components/Header":"components/Header.js","./components/ButtonTryAgain":"components/ButtonTryAgain.js","./components/Questions":"components/Questions.js","./utility/useDataFetcher":"utility/useDataFetcher.js","./components/TopRightImage":"components/TopRightImage.js","./utility/useRandomNumber":"utility/useRandomNumber.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

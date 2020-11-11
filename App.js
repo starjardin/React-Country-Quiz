@@ -4,9 +4,9 @@ import Answers from './components/Ansewrs'
 import Header from './components/Header'
 import ButtonTryAgain from "./components/ButtonTryAgain"
 import Question from './components/Questions'
-import useDataFetcher from './useDataFetcher'
+import useDataFetcher from './utility/useDataFetcher'
 import TopRightImage from './components/TopRightImage'
-import useRandomNumber from './useRandomNumber'
+import useRandomNumber from './utility/useRandomNumber'
 
 export default function App () {
   const [counter, setCounter] = useState(0)
