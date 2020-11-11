@@ -33952,6 +33952,7 @@ function Answers({
     }
   }
 
+  const letters = ["a", "b", "c", "d"];
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, sortedRandomNumber.map(indexArr => /*#__PURE__*/_react.default.createElement("button", {
     key: countriesName[indexArr].flag,
     className: "btn answers",

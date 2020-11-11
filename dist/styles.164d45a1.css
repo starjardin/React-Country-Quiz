@@ -27,7 +27,7 @@ h1 {
   color: #F2F2F2;
   max-width: 464px;
   margin: auto;
-  transform: translateX(-5%);
+  padding-bottom: 2rem;
 }
 
 .btn {
@@ -39,6 +39,7 @@ h1 {
   border: 2px solid rgba(96, 102, 208, 0.7);
   box-sizing: border-box;
   border-radius: 12px;
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -94,12 +95,6 @@ h1 {
   padding-bottom: 4rem;
 }
 
-.adventure {
-  position: absolute;
-  top: -20%;
-  right: 0;
-}
-
 .tryagain {
   text-align: center;
 }
@@ -112,13 +107,14 @@ h1 {
   line-height: 72px;
 }
 .tryagain p {
-  font-weight: normal;
+  font-weight: 700;
   font-size: 18px;
   line-height: 27px;
 }
 .tryagain p span {
-  font-size: 30px;
+  font-size: 25px;
   color: seagreen;
+  padding-inline-start: 0.5rem;
 }
 
 .tryagain button,
@@ -162,6 +158,47 @@ h1 {
 .btn.answers:hover {
   color: #ffffff;
   transform: scale(1.02);
+}
+
+.adventure {
+  padding-bottom: 2rem;
+}
+
+.btn {
+  position: relative;
+}
+
+.btn::before {
+  position: absolute;
+  left: 1rem;
+}
+
+.btn:nth-of-type(1)::before {
+  content: "A";
+}
+
+.btn:nth-of-type(2)::before {
+  content: "B";
+}
+
+.btn:nth-of-type(3)::before {
+  content: "C";
+}
+
+.btn:nth-of-type(4)::before {
+  content: "D";
+}
+
+@media (min-width: 475px) {
+  h1 {
+    transform: translateX(-5%);
+  }
+
+  .adventure {
+    position: absolute;
+    top: -20%;
+    right: 0;
+  }
 }
 
 /*# sourceMappingURL=/styles.164d45a1.css.map */

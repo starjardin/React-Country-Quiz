@@ -42,20 +42,20 @@ export default function App () {
         <TopRightImage />
         <Router >
           <Switch>
-              <Route exact path="/">
-                <Question 
-                  randomNumber1={randomNumber1}
-                  countriesName={countriesName}
-                  getCountries={getCountries}
-                />
-                <Answers 
-                  getCountries={getCountries}
-                  countriesName={countriesName}
-                  sortedRandomNumber={sortedRandomNumber}
-                  randomNumber1={randomNumber1}
-                  counter={counter}
-                  setCounter={setCounter}
-                />
+            <Route exact path="/">
+              <Question 
+                randomNumber1={randomNumber1}
+                countriesName={countriesName}
+                getCountries={getCountries}
+              />
+              <Answers 
+                getCountries={getCountries}
+                countriesName={countriesName}
+                sortedRandomNumber={sortedRandomNumber}
+                randomNumber1={randomNumber1}
+                counter={counter}
+                setCounter={setCounter}
+              />
             </Route>
             <Route path="/tryAgain">
               <ButtonTryAgain

@@ -24,7 +24,6 @@ export default function Answers ({
     const indexOfTheRightAnswer = sortedRandomNumber.find(index => {
         return countriesName[index].name === countriesName[randomNumber1].name
       })
-
       const rightAnswer = countriesName[indexOfTheRightAnswer].name
       setIsAnswerCorrect(false)
       e.target.classList.add("incorrect")
@@ -47,6 +46,7 @@ export default function Answers ({
       handleAnswerIsNotTrue(e, buttons)
     }
   }
+  const letters = ["a", "b", "c", "d"]
 
   return (
     <>
