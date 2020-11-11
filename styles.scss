@@ -4,10 +4,30 @@ html {
   background-size: cover;
   width: 100vw;
   height: 100vh;
+  font-family: Poppins;
+  font-style: normal;
+}
+
+#root {
+  padding-top: 3rem;
+}
+
+.question {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  color: #2F527B;
 }
 
 h1 {
-  color: #ffffff;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 54px;
+  text-transform: uppercase;
+  color: #F2F2F2;
+  max-width: 464px;
+  margin: auto;
+  transform: translateX(-5%);
 }
 
 .btn {
@@ -69,29 +89,44 @@ h1 {
   border-radius: 5px;
   max-width: 464px;
   margin: auto;
-  position : relatives;
+  position: relative;
+  padding-bottom: 4rem;
+}
+
+.adventure {
+  position: absolute;
+  top: -20%;
+  right: 0;
 }
 
 .tryagain {
-  background-image: url("./assets/winners.svg");
-  max-width: 464px;
-  height: 629px;
-  background-repeat: no-repeat;
-  margin: auto;
-  position: relative;
+  text-align: center;
+  .results, p {
+    color: #1D355D;
+  }
+  .results {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 72px;
+  }
+  p {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    span {
+      font-size: 30px;
+      color: seagreen;
+    }
+  }
 }
 
-.tryagain button {
-  position: absolute;
-  bottom: 20%;
-  right: 2rem;
-  font-family: Poppins;
-  font-style: normal;
+.tryagain button,
+.tryagain button:focus {
   font-weight: 600;
   font-size: 18px;
   line-height: 27px;
   color: #1D355D;
-  background: #FFFFFF;
+  background-color: #FFFFFF;
   border-radius: 24px;
   padding-block: 1rem;
   padding-inline: 3.5rem;
@@ -104,13 +139,18 @@ h1 {
   padding-inline: 36px;
   padding-block: 15px;
   position: absolute;
-  right: 16%;
+  right: 1.5rem;
 }
 
 .tryagain button:hover,
 .next:hover {
   background-color: #F9A826;
   cursor: pointer;
+}
+
+.tryagain button:focus,
+.next:focus {
+  outline : none;
 }
 
 .btn.answers {

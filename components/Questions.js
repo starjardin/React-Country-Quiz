@@ -17,10 +17,14 @@ export default function Question ({
   return (
     <>
       {randomQuestionNumber === 0  
-        ? <h2>{countriesName[randomNumber1].capital && countriesName[randomNumber1].capital} is the capital of?</h2>
+        ? <h2 className="question">
+            {countriesName[randomNumber1].capital && countriesName[randomNumber1].capital} is the capital of?
+          </h2>
         : (<div>
             <img src={countriesName[randomNumber1].flag} className="flag"/>
-            <h2>Which country does this flag belong to?</h2>
+            <h2 className="question">
+              Which country does this flag belong to?
+            </h2>
         </div>)
       }
     </>

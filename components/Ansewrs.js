@@ -27,14 +27,13 @@ export default function Answers ({ arrOfSortedRandomNumber, countriesName, rando
     }
   }
 
-  console.log(isAnswerCorrect);
-  console.log(isQuestionAnswered);
+  console.log(arrOfSortedRandomNumber);
 
   return (
     <>
       {arrOfSortedRandomNumber.map(indexArr => (
           <button 
-            key={countriesName[indexArr].name}
+            key={countriesName[indexArr].flag}
             className="btn answers"
             data-value={countriesName[indexArr].name}
             onClick={handleAnswers}

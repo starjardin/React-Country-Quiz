@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-export default function ButtonNext ({ getCountries, isAnswerCorrect,
-setCounter, setIsQuestionAnswered }) {
+export default function ButtonNext ({ 
+  getCountries,
+  isAnswerCorrect,
+  setCounter,
+  setIsQuestionAnswered 
+}) {
   
   function handleClick () {
     getCountries()
