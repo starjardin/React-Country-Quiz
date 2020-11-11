@@ -33907,7 +33907,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function Answers({
-  arrOfSortedRandomNumber,
+  sortedRandomNumber,
   countriesName,
   randomNumber1,
   getCountries,
@@ -33917,29 +33917,42 @@ function Answers({
   const [isAnswerCorrect, setIsAnswerCorrect] = (0, _react.useState)(false);
   const [isQuestionAnswered, setIsQuestionAnswered] = (0, _react.useState)(false);
 
-  function handleAnswers(e) {
-    setIsQuestionAnswered(true);
-    const container = e.target.parentElement;
-    const buttons = Array.from(container.querySelectorAll(".btn"));
-    buttons.map(button => button.setAttribute("disabled", ""));
-
+  function handleAnswerIsTrue(e) {
     if (countriesName[randomNumber1].name === e.target.dataset.value) {
       setIsAnswerCorrect(true);
       e.target.classList.add("correct");
-    } else {
-      const indexOfTheRightAnswer = arrOfSortedRandomNumber.find(index => {
-        return countriesName[index].name === countriesName[randomNumber1].name;
-      });
-      const rightAnswer = countriesName[indexOfTheRightAnswer].name;
-      setIsAnswerCorrect(false);
-      e.target.classList.add("incorrect");
-      const buttonwithTheCorrectAnswer = buttons.find(button => button.dataset.value == rightAnswer);
-      buttonwithTheCorrectAnswer.classList.add("correct");
     }
   }
 
-  console.log(arrOfSortedRandomNumber);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, arrOfSortedRandomNumber.map(indexArr => /*#__PURE__*/_react.default.createElement("button", {
+  function handleAnswerIsNotTrue(e, buttons) {
+    //Find the index of the true answer
+    const indexOfTheRightAnswer = sortedRandomNumber.find(index => {
+      return countriesName[index].name === countriesName[randomNumber1].name;
+    });
+    const rightAnswer = countriesName[indexOfTheRightAnswer].name;
+    setIsAnswerCorrect(false);
+    e.target.classList.add("incorrect"); // find which button contains the right answer
+
+    const buttonwithTheCorrectAnswer = buttons.find(button => button.dataset.value == rightAnswer);
+    buttonwithTheCorrectAnswer.classList.add("correct");
+  }
+
+  function handleAnswers(e) {
+    //set isQuestionAnswered to true when answered (click one of the answers)
+    setIsQuestionAnswered(true);
+    const container = e.target.parentElement;
+    const buttons = Array.from(container.querySelectorAll(".btn")); //disable the buttons after clicking once so that the user can no have multi answers
+
+    buttons.map(button => button.setAttribute("disabled", ""));
+
+    if (countriesName[randomNumber1].name === e.target.dataset.value) {
+      handleAnswerIsTrue(e);
+    } else {
+      handleAnswerIsNotTrue(e, buttons);
+    }
+  }
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, sortedRandomNumber.map(indexArr => /*#__PURE__*/_react.default.createElement("button", {
     key: countriesName[indexArr].flag,
     className: "btn answers",
     "data-value": countriesName[indexArr].name,
@@ -34061,6 +34074,9 @@ function useDataFetcher() {
     setCountriesName(data);
   };
 
+  (0, _react.useEffect)(() => {
+    getCountries();
+  }, []);
   return {
     countriesName,
     getCountries
@@ -34089,7 +34105,37 @@ function TopRightImage() {
     className: "adventure"
   });
 }
-},{"react":"node_modules/react/index.js","./../assets/adventure.svg":"assets/adventure.svg"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./../assets/adventure.svg":"assets/adventure.svg"}],"useRandomNumber.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useRandomNumber;
+
+var _useDataFetcher = _interopRequireDefault(require("./useDataFetcher"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useRandomNumber() {
+  const {
+    countriesName
+  } = (0, _useDataFetcher.default)();
+  const randomNumber1 = Math.floor(Math.random() * countriesName.length);
+  const randomNumber2 = Math.floor(Math.random() * countriesName.length);
+  const randomNumber3 = Math.floor(Math.random() * countriesName.length);
+  const randomNumber4 = Math.floor(Math.random() * countriesName.length);
+  const randomNumberArr = [randomNumber1, randomNumber4, randomNumber2, randomNumber3];
+  const sortedRandomNumber = randomNumberArr.sort((a, b) => b - a);
+  return {
+    randomNumber1,
+    randomNumber2,
+    randomNumber3,
+    randomNumber4,
+    sortedRandomNumber
+  };
+}
+},{"./useDataFetcher":"useDataFetcher.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34113,6 +34159,8 @@ var _useDataFetcher = _interopRequireDefault(require("./useDataFetcher"));
 
 var _TopRightImage = _interopRequireDefault(require("./components/TopRightImage"));
 
+var _useRandomNumber = _interopRequireDefault(require("./useRandomNumber"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -34124,24 +34172,22 @@ function App() {
   const {
     countriesName,
     getCountries
-  } = (0, _useDataFetcher.default)();
-  (0, _react.useEffect)(() => {
-    getCountries();
-  }, []);
-  const randomNumber1 = Math.floor(Math.random() * countriesName.length);
-  const randomNumber2 = Math.floor(Math.random() * countriesName.length);
-  const randomNumber3 = Math.floor(Math.random() * countriesName.length);
-  const randomNumber4 = Math.floor(Math.random() * countriesName.length); // if () return null
+  } = (0, _useDataFetcher.default)(); //Import random numbers from useRandomNumber
+
+  const {
+    randomNumber1,
+    randomNumber2,
+    randomNumber3,
+    randomNumber4,
+    sortedRandomNumber
+  } = (0, _useRandomNumber.default)();
 
   if (!countriesName.length || randomNumber1 === randomNumber2 || randomNumber1 === randomNumber3 || randomNumber1 === randomNumber4 || randomNumber2 === randomNumber3 || randomNumber2 === randomNumber4 || randomNumber3 === randomNumber4) {
-    console.log("Hey same index");
     return null;
   }
 
   console.log(countriesName[randomNumber1].name);
   console.log(countriesName[randomNumber1].capital);
-  const randomNumberArr = [randomNumber1, randomNumber4, randomNumber2, randomNumber3];
-  const arrOfSortedRandomNumber = randomNumberArr.sort((a, b) => b - a);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
   }, /*#__PURE__*/_react.default.createElement(_TopRightImage.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
@@ -34154,7 +34200,7 @@ function App() {
   }), /*#__PURE__*/_react.default.createElement(_Ansewrs.default, {
     getCountries: getCountries,
     countriesName: countriesName,
-    arrOfSortedRandomNumber: arrOfSortedRandomNumber,
+    sortedRandomNumber: sortedRandomNumber,
     randomNumber1: randomNumber1,
     counter: counter,
     setCounter: setCounter
@@ -34166,7 +34212,7 @@ function App() {
     setCounter: setCounter
   }))))));
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Ansewrs":"components/Ansewrs.js","./components/Header":"components/Header.js","./components/ButtonTryAgain":"components/ButtonTryAgain.js","./components/Questions":"components/Questions.js","./useDataFetcher":"useDataFetcher.js","./components/TopRightImage":"components/TopRightImage.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Ansewrs":"components/Ansewrs.js","./components/Header":"components/Header.js","./components/ButtonTryAgain":"components/ButtonTryAgain.js","./components/Questions":"components/Questions.js","./useDataFetcher":"useDataFetcher.js","./components/TopRightImage":"components/TopRightImage.js","./useRandomNumber":"useRandomNumber.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

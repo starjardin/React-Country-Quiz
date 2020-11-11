@@ -81,6 +81,7 @@ h1 {
 .flag {
   width: 84px;
   height: 54px;
+  box-shadow: 1px 1px 1px 1px #cccccc;
 }
 
 .container {

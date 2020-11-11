@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const API_KEY = "https://restcountries.eu/rest/v2/all"
 export default function useDataFetcher () {
@@ -9,6 +9,10 @@ export default function useDataFetcher () {
     const data = await res.json()
     setCountriesName(data)
   }
-  
+
+  useEffect (() => {
+    getCountries()
+  }, [])
+
   return { countriesName, getCountries }
 }
