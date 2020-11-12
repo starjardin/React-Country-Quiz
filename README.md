@@ -67,9 +67,12 @@ Template for your readme :
 
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
--   Where can I see your demo?
+-   You can see my demo in the following link 
+    <a href="https://country-quiz-tantely.netlify.app/">
+      Work Demo
+    </a>?
 -   What was your experience?
--   What have you learned/improved?
+-   Well, This has been the funnest project ever, I learned using custom    hooks that I first happy with to know it.
 -   Your wisdom? :)
 
 ### Built With

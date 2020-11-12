@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ButtonNext from "./ButtonNext"
+import useHandleAnswers from '../utility/useHandleAnswers'
 
 export default function Answers ({ 
   sortedRandomNumber,
@@ -11,29 +12,15 @@ export default function Answers ({
 }) {
   const [ isAnswerCorrect, setIsAnswerCorrect ] = useState(false)
   const [ isQuestionAnswered, setIsQuestionAnswered ] = useState(false)
-
-  function handleAnswerIsTrue (e) {
-    if ((countriesName[randomNumber1].name) === (e.target.dataset.value)) {
-      setIsAnswerCorrect(true)
-      e.target.classList.add("correct")
-    }
-  }
-
-  function handleAnswerIsNotTrue (e, buttons) {
-    //Find the index of the true answer
-    const indexOfTheRightAnswer = sortedRandomNumber.find(index => {
-        return countriesName[index].name === countriesName[randomNumber1].name
-      })
-      const rightAnswer = countriesName[indexOfTheRightAnswer].name
-      setIsAnswerCorrect(false)
-      e.target.classList.add("incorrect")
-      // find which button contains the right answer
-      const buttonwithTheCorrectAnswer = buttons.find(button => button.dataset.value == rightAnswer)
-      buttonwithTheCorrectAnswer.classList.add("correct")
-  }
+  const { handleAnswerIsNotTrue, handleAnswerIsTrue } = useHandleAnswers({
+    sortedRandomNumber,
+    countriesName,
+    randomNumber1,
+    setIsAnswerCorrect 
+  })
 
   function handleAnswers (e) {
-    //set isQuestionAnswered to true when answered (click one of the answers)
+    //set isQuestionAnswered to true when the question is answered (click one of the answers)
     setIsQuestionAnswered(true)
     const container = e.target.parentElement
     const buttons = Array.from(container.querySelectorAll(".btn"))
@@ -59,6 +46,7 @@ export default function Answers ({
             {countriesName[indexArr].name}
           </button>
       ))}
+      <audio></audio>
       {isQuestionAnswered && 
         <ButtonNext 
           getCountries={getCountries}

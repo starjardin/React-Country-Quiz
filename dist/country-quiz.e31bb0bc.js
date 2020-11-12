@@ -33888,7 +33888,79 @@ function ButtonNext({
     className: "next"
   }, "Next")));
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"components/Ansewrs.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"assets/hihat.wav":[function(require,module,exports) {
+module.exports = "/hihat.c8e81854.wav";
+},{}],"utility/useAddSound.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useAddSound;
+
+var _hihat = _interopRequireDefault(require("../assets/hihat.wav"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useAddSound() {
+  function addBuzzSound() {
+    let buzzSoundFroWrongAnswer = new Audio(_hihat.default);
+    buzzSoundFroWrongAnswer.play();
+  }
+
+  return {
+    addBuzzSound
+  };
+}
+},{"../assets/hihat.wav":"assets/hihat.wav"}],"utility/useHandleAnswers.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useHandlegAnswers;
+
+var _useAddSound = _interopRequireDefault(require("./useAddSound"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useHandlegAnswers({
+  sortedRandomNumber,
+  countriesName,
+  randomNumber1,
+  setIsAnswerCorrect
+}) {
+  const {
+    addBuzzSound
+  } = (0, _useAddSound.default)();
+
+  function handleAnswerIsNotTrue(e, buttons) {
+    //Find the index of the true answer
+    addBuzzSound();
+    const indexOfTheRightAnswer = sortedRandomNumber.find(index => {
+      return countriesName[index].name === countriesName[randomNumber1].name;
+    });
+    const rightAnswer = countriesName[indexOfTheRightAnswer].name;
+    setIsAnswerCorrect(false);
+    e.target.classList.add("incorrect"); // find which button contains the right answer
+
+    const buttonwithTheCorrectAnswer = buttons.find(button => button.dataset.value == rightAnswer);
+    buttonwithTheCorrectAnswer.classList.add("correct");
+  }
+
+  function handleAnswerIsTrue(e) {
+    if (countriesName[randomNumber1].name === e.target.dataset.value) {
+      setIsAnswerCorrect(true);
+      e.target.classList.add("correct");
+    }
+  }
+
+  return {
+    handleAnswerIsNotTrue,
+    handleAnswerIsTrue
+  };
+}
+},{"./useAddSound":"utility/useAddSound.js"}],"components/Ansewrs.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33899,6 +33971,8 @@ exports.default = Answers;
 var _react = _interopRequireWildcard(require("react"));
 
 var _ButtonNext = _interopRequireDefault(require("./ButtonNext"));
+
+var _useHandleAnswers = _interopRequireDefault(require("../utility/useHandleAnswers"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33916,29 +33990,18 @@ function Answers({
 }) {
   const [isAnswerCorrect, setIsAnswerCorrect] = (0, _react.useState)(false);
   const [isQuestionAnswered, setIsQuestionAnswered] = (0, _react.useState)(false);
-
-  function handleAnswerIsTrue(e) {
-    if (countriesName[randomNumber1].name === e.target.dataset.value) {
-      setIsAnswerCorrect(true);
-      e.target.classList.add("correct");
-    }
-  }
-
-  function handleAnswerIsNotTrue(e, buttons) {
-    //Find the index of the true answer
-    const indexOfTheRightAnswer = sortedRandomNumber.find(index => {
-      return countriesName[index].name === countriesName[randomNumber1].name;
-    });
-    const rightAnswer = countriesName[indexOfTheRightAnswer].name;
-    setIsAnswerCorrect(false);
-    e.target.classList.add("incorrect"); // find which button contains the right answer
-
-    const buttonwithTheCorrectAnswer = buttons.find(button => button.dataset.value == rightAnswer);
-    buttonwithTheCorrectAnswer.classList.add("correct");
-  }
+  const {
+    handleAnswerIsNotTrue,
+    handleAnswerIsTrue
+  } = (0, _useHandleAnswers.default)({
+    sortedRandomNumber,
+    countriesName,
+    randomNumber1,
+    setIsAnswerCorrect
+  });
 
   function handleAnswers(e) {
-    //set isQuestionAnswered to true when answered (click one of the answers)
+    //set isQuestionAnswered to true when the question is answered (click one of the answers)
     setIsQuestionAnswered(true);
     const container = e.target.parentElement;
     const buttons = Array.from(container.querySelectorAll(".btn")); //disable the buttons after clicking once so that the user can no have multi answers
@@ -33957,7 +34020,7 @@ function Answers({
     className: `btn answers`,
     "data-value": countriesName[indexArr].name,
     onClick: handleAnswers
-  }, countriesName[indexArr].name)), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
+  }, countriesName[indexArr].name)), /*#__PURE__*/_react.default.createElement("audio", null), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
     getCountries: getCountries,
     isAnswerCorrect: isAnswerCorrect,
     setIsQuestionAnswered: setIsQuestionAnswered,
@@ -33965,7 +34028,7 @@ function Answers({
     setCounter: setCounter
   }));
 }
-},{"react":"node_modules/react/index.js","./ButtonNext":"components/ButtonNext.js"}],"components/Header.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./ButtonNext":"components/ButtonNext.js","../utility/useHandleAnswers":"utility/useHandleAnswers.js"}],"components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33978,7 +34041,7 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Header() {
-  return /*#__PURE__*/_react.default.createElement("h1", null, "Country Quiz");
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, "Country Quiz"));
 }
 },{"react":"node_modules/react/index.js"}],"assets/winners.svg":[function(require,module,exports) {
 module.exports = "/winners.b80fe258.svg";
@@ -34252,7 +34315,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54114" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59422" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
