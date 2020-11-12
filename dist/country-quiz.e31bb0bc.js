@@ -33952,10 +33952,9 @@ function Answers({
     }
   }
 
-  const letters = ["a", "b", "c", "d"];
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, sortedRandomNumber.map(indexArr => /*#__PURE__*/_react.default.createElement("button", {
     key: countriesName[indexArr].flag,
-    className: "btn answers",
+    className: `btn answers`,
     "data-value": countriesName[indexArr].name,
     onClick: handleAnswers
   }, countriesName[indexArr].name)), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
@@ -34253,7 +34252,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53718" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54114" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -46,14 +46,13 @@ export default function Answers ({
       handleAnswerIsNotTrue(e, buttons)
     }
   }
-  const letters = ["a", "b", "c", "d"]
 
   return (
     <>
       {sortedRandomNumber.map(indexArr => (
           <button 
             key={countriesName[indexArr].flag}
-            className="btn answers"
+            className={`btn answers`}
             data-value={countriesName[indexArr].name}
             onClick={handleAnswers}
           >
