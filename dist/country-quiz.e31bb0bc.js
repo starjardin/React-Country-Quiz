@@ -34023,7 +34023,7 @@ function useHandlegAnswers({
     handleAnswerIsTrue
   };
 }
-},{"./useAddSound":"utility/useAddSound.js"}],"components/Ansewrs.js":[function(require,module,exports) {
+},{"./useAddSound":"utility/useAddSound.js"}],"components/Answers.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34250,7 +34250,34 @@ function useRandomNumber() {
     sortedRandomNumber
   };
 }
-},{"react":"node_modules/react/index.js","../context/countriesContext":"context/countriesContext.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../context/countriesContext":"context/countriesContext.js"}],"components/ConfirmToQuit.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ConfirmToQuit;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function ConfirmToQuit() {
+  function quit(e) {}
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, "Are You Sure You Want To Quit"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/bye"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    onClick: quit
+  }, "Yes")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, /*#__PURE__*/_react.default.createElement("button", null, "No")));
+}
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34262,7 +34289,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
-var _Ansewrs = _interopRequireDefault(require("./components/Ansewrs"));
+var _Answers = _interopRequireDefault(require("./components/Answers"));
 
 var _Header = _interopRequireDefault(require("./components/Header"));
 
@@ -34276,6 +34303,8 @@ var _useRandomNumber = _interopRequireDefault(require("./utility/useRandomNumber
 
 var _countriesContext = require("./context/countriesContext");
 
+var _ConfirmToQuit = _interopRequireDefault(require("./components/ConfirmToQuit"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -34285,7 +34314,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function App() {
   const {
     countries
-  } = (0, _react.useContext)(_countriesContext.CountriesContext); // //Import random numbers from useRandomNumber
+  } = (0, _react.useContext)(_countriesContext.CountriesContext); // const [ isUserQuiting, setIsUserQuiting] = useState(false)
+  // //Import random numbers from useRandomNumber
 
   const {
     randomNumber1,
@@ -34299,21 +34329,24 @@ function App() {
     return null;
   }
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement("div", {
+  function quitTheGame() {// setIsUserQuiting(true)
+  }
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
-  }, /*#__PURE__*/_react.default.createElement(_TopRightImage.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+  }, /*#__PURE__*/_react.default.createElement(_TopRightImage.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_Questions.default, {
     randomNumber1: randomNumber1
-  }), /*#__PURE__*/_react.default.createElement(_Ansewrs.default, {
+  }), /*#__PURE__*/_react.default.createElement(_Answers.default, {
     sortedRandomNumber: sortedRandomNumber,
     randomNumber1: randomNumber1
   })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/tryAgain"
   }, /*#__PURE__*/_react.default.createElement(_ButtonTryAgain.default, null))))));
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Ansewrs":"components/Ansewrs.js","./components/Header":"components/Header.js","./components/ButtonTryAgain":"components/ButtonTryAgain.js","./components/Questions":"components/Questions.js","./components/TopRightImage":"components/TopRightImage.js","./utility/useRandomNumber":"utility/useRandomNumber.js","./context/countriesContext":"context/countriesContext.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Answers":"components/Answers.js","./components/Header":"components/Header.js","./components/ButtonTryAgain":"components/ButtonTryAgain.js","./components/Questions":"components/Questions.js","./components/TopRightImage":"components/TopRightImage.js","./utility/useRandomNumber":"utility/useRandomNumber.js","./context/countriesContext":"context/countriesContext.js","./components/ConfirmToQuit":"components/ConfirmToQuit.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
