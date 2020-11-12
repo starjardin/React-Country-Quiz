@@ -1,20 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import ButtonNext from "./ButtonNext"
 import useHandleAnswers from '../utility/useHandleAnswers'
+import { CountriesContext } from '../context/countriesContext'
 
 export default function Answers ({ 
   sortedRandomNumber,
-  countriesName,
   randomNumber1,
-  getCountries,
-  counter,
-  setCounter 
 }) {
+  const { countries, getCountries, score, setScore } = useContext(CountriesContext)
   const [ isAnswerCorrect, setIsAnswerCorrect ] = useState(false)
   const [ isQuestionAnswered, setIsQuestionAnswered ] = useState(false)
   const { handleAnswerIsNotTrue, handleAnswerIsTrue } = useHandleAnswers({
     sortedRandomNumber,
-    countriesName,
+    countriesName: countries,
     randomNumber1,
     setIsAnswerCorrect 
   })
@@ -27,7 +25,7 @@ export default function Answers ({
     //disable the buttons after clicking once so that the user can no have multi answers
     buttons.map(button => button.setAttribute("disabled", ""))
 
-    if ((countriesName[randomNumber1].name) === (e.target.dataset.value)) {
+    if ((countries[randomNumber1].name) === (e.target.dataset.value)) {
       handleAnswerIsTrue(e)
     } else {
       handleAnswerIsNotTrue(e, buttons)
@@ -38,21 +36,18 @@ export default function Answers ({
     <>
       {sortedRandomNumber.map(indexArr => (
           <button 
-            key={countriesName[indexArr].flag}
+            key={countries[indexArr].flag}
             className={`btn answers`}
-            data-value={countriesName[indexArr].name}
+            data-value={countries[indexArr].name}
             onClick={handleAnswers}
           >
-            {countriesName[indexArr].name}
+            {countries[indexArr].name}
           </button>
       ))}
       {isQuestionAnswered && 
         <ButtonNext 
-          getCountries={getCountries}
           isAnswerCorrect={isAnswerCorrect}
           setIsQuestionAnswered={setIsQuestionAnswered}
-          counter={counter}
-          setCounter={setCounter}
       />}
     </>
   )

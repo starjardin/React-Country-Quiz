@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CountriesContext } from '../context/countriesContext'
 
 export default function Question ({ 
   randomNumber1, 
-  countriesName, 
-  getCountries
  }) {
+  const { countries, getCountries } = useContext(CountriesContext)
   const randomQuestionNumber = Math.floor(Math.random() * 2)
 
-  if ((!countriesName[randomNumber1].capital) || 
-      (!countriesName[randomNumber1].flag)
+  if ((!countries[randomNumber1].capital) || 
+      (!countries[randomNumber1].flag)
   ) {
     getCountries()
   }
@@ -18,10 +18,10 @@ export default function Question ({
     <>
       {randomQuestionNumber === 0  
         ? <h2 className="question">
-            {countriesName[randomNumber1].capital && countriesName[randomNumber1].capital} is the capital of?
+            {countries[randomNumber1].capital && countries[randomNumber1].capital} is the capital of?
           </h2>
         : (<div>
-            <img src={countriesName[randomNumber1].flag} className="flag"/>
+            <img src={countries[randomNumber1].flag} className="flag"/>
             <h2 className="question">
               Which country does this flag belong to?
             </h2>

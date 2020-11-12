@@ -105,6 +105,7 @@ h1 {
   font-weight: bold;
   font-size: 48px;
   line-height: 72px;
+  margin-block: 2rem;
 }
 .tryagain p {
   font-weight: 700;

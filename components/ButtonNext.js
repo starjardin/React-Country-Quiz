@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
+import { CountriesContext } from '../context/countriesContext';
 
 export default function ButtonNext ({ 
-  getCountries,
   isAnswerCorrect,
-  setCounter,
   setIsQuestionAnswered 
 }) {
+
+  const { getCountries, setScore } = useContext(CountriesContext)
   
-  function handleClick () {
+  function handleNextButtonClick () {
     getCountries()
-    setCounter(prev => prev + 1)
+    setScore(prevScore => prevScore + 1)
     setIsQuestionAnswered(false)
   }
 
@@ -18,7 +19,7 @@ export default function ButtonNext ({
     <>
     {isAnswerCorrect ? 
       <button 
-        onClick={handleClick}
+        onClick={handleNextButtonClick}
         className="next"
       >
         Next
