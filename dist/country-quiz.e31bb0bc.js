@@ -33888,8 +33888,10 @@ function ButtonNext({
     className: "next"
   }, "Next")));
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"assets/hihat.wav":[function(require,module,exports) {
-module.exports = "/hihat.c8e81854.wav";
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"assets/buzzer-false.mp3":[function(require,module,exports) {
+module.exports = "/buzzer-false.a7c980dd.mp3";
+},{}],"assets/buzzer-true.mp3":[function(require,module,exports) {
+module.exports = "/buzzer-true.ba203c02.mp3";
 },{}],"utility/useAddSound.js":[function(require,module,exports) {
 "use strict";
 
@@ -33898,21 +33900,29 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = useAddSound;
 
-var _hihat = _interopRequireDefault(require("../assets/hihat.wav"));
+var _buzzerFalse = _interopRequireDefault(require("../assets/buzzer-false.mp3"));
+
+var _buzzerTrue = _interopRequireDefault(require("../assets/buzzer-true.mp3"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function useAddSound() {
-  function addBuzzSound() {
-    let buzzSoundFroWrongAnswer = new Audio(_hihat.default);
+  function addFalseBuzzSound() {
+    let buzzSoundFroWrongAnswer = new Audio(_buzzerFalse.default);
     buzzSoundFroWrongAnswer.play();
   }
 
+  function addTrueBuzzSound() {
+    let buzzSoundFromCorrectAnswer = new Audio(_buzzerTrue.default);
+    buzzSoundFromCorrectAnswer.play();
+  }
+
   return {
-    addBuzzSound
+    addTrueBuzzSound,
+    addFalseBuzzSound
   };
 }
-},{"../assets/hihat.wav":"assets/hihat.wav"}],"utility/useHandleAnswers.js":[function(require,module,exports) {
+},{"../assets/buzzer-false.mp3":"assets/buzzer-false.mp3","../assets/buzzer-true.mp3":"assets/buzzer-true.mp3"}],"utility/useHandleAnswers.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33931,12 +33941,13 @@ function useHandlegAnswers({
   setIsAnswerCorrect
 }) {
   const {
-    addBuzzSound
+    addTrueBuzzSound,
+    addFalseBuzzSound
   } = (0, _useAddSound.default)();
 
   function handleAnswerIsNotTrue(e, buttons) {
+    // addFalseBuzzSound()
     //Find the index of the true answer
-    addBuzzSound();
     const indexOfTheRightAnswer = sortedRandomNumber.find(index => {
       return countriesName[index].name === countriesName[randomNumber1].name;
     });
@@ -33944,11 +33955,14 @@ function useHandlegAnswers({
     setIsAnswerCorrect(false);
     e.target.classList.add("incorrect"); // find which button contains the right answer
 
-    const buttonwithTheCorrectAnswer = buttons.find(button => button.dataset.value == rightAnswer);
+    const buttonwithTheCorrectAnswer = buttons.find(button => {
+      return button.dataset.value === rightAnswer;
+    });
     buttonwithTheCorrectAnswer.classList.add("correct");
   }
 
   function handleAnswerIsTrue(e) {
+    // addTrueBuzzSound()
     if (countriesName[randomNumber1].name === e.target.dataset.value) {
       setIsAnswerCorrect(true);
       e.target.classList.add("correct");
@@ -34020,7 +34034,7 @@ function Answers({
     className: `btn answers`,
     "data-value": countriesName[indexArr].name,
     onClick: handleAnswers
-  }, countriesName[indexArr].name)), /*#__PURE__*/_react.default.createElement("audio", null), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
+  }, countriesName[indexArr].name)), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
     getCountries: getCountries,
     isAnswerCorrect: isAnswerCorrect,
     setIsQuestionAnswered: setIsQuestionAnswered,
@@ -34315,7 +34329,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59422" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62367" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -6,23 +6,26 @@ export default function useHandlegAnswers ({
   randomNumber1,
   setIsAnswerCorrect 
 }) {
-  const { addBuzzSound } = useAddSound()
+  const { addTrueBuzzSound, addFalseBuzzSound } = useAddSound()
 
   function handleAnswerIsNotTrue (e, buttons) {
-  //Find the index of the true answer
-  addBuzzSound()
-  const indexOfTheRightAnswer = sortedRandomNumber.find(index => {
+    // addFalseBuzzSound()
+    //Find the index of the true answer
+    const indexOfTheRightAnswer = sortedRandomNumber.find(index => {
       return countriesName[index].name === countriesName[randomNumber1].name
     })
     const rightAnswer = countriesName[indexOfTheRightAnswer].name
     setIsAnswerCorrect(false)
     e.target.classList.add("incorrect")
     // find which button contains the right answer
-    const buttonwithTheCorrectAnswer = buttons.find(button => button.dataset.value == rightAnswer)
-      buttonwithTheCorrectAnswer.classList.add("correct")
+    const buttonwithTheCorrectAnswer = buttons.find(button => {
+      return button.dataset.value === rightAnswer
+    })
+    buttonwithTheCorrectAnswer.classList.add("correct")
   }
 
   function handleAnswerIsTrue (e) {
+    // addTrueBuzzSound()
     if ((countriesName[randomNumber1].name) === (e.target.dataset.value)) {
       setIsAnswerCorrect(true)
       e.target.classList.add("correct")

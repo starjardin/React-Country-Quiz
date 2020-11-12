@@ -46,7 +46,6 @@ export default function Answers ({
             {countriesName[indexArr].name}
           </button>
       ))}
-      <audio></audio>
       {isQuestionAnswered && 
         <ButtonNext 
           getCountries={getCountries}
