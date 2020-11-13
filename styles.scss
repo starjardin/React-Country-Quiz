@@ -3,7 +3,6 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
-  height: 100vh;
   font-family: Poppins;
   font-style: normal;
 }
@@ -93,6 +92,7 @@ h1 {
   margin: auto;
   position: relative;
   padding-bottom: 4rem;
+  text-align: center;
 }
 
 .tryagain {
@@ -188,6 +188,38 @@ h1 {
 
 .btn:nth-of-type(4)::before {
   content: "D";
+}
+
+.triggerCloseButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.7rem;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  line-height: 21px;
+  color: #1D355D;
+  background-image: url('./assets/menu.svg');
+  background-repeat: no-repeat;
+  span {
+    visibility: hidden;
+    padding-left: 2rem;
+  }
+}
+
+.triggerCloseButton:hover {
+  span {
+    visibility: visible;
+  }
+}
+
+.header__gameclosed {
+  padding-top: 3rem;
+}
+
+.triggerCloseButton:focus {
+  outline: none;
 }
 
 @media (min-width : 475px) {

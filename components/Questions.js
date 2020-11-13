@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { CountriesContext } from '../context/countriesContext'
 
-export default function Question ({ 
+export default function Questions ({ 
   randomNumber1, 
  }) {
   const { countries, getCountries } = useContext(CountriesContext)

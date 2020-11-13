@@ -4,8 +4,8 @@ import App from './App'
 import { CountriesContextProvider } from './context/countriesContext'
 
 ReactDOM.render(
-  <CountriesContextProvider >
-    <App/>
+  <CountriesContextProvider>
+      <App />
   </CountriesContextProvider>,
   document.querySelector('#root')
 )
