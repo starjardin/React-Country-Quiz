@@ -2,13 +2,15 @@
 
 **Icon**: https://google.github.io/material-design-icons/
 
-**API**: https://restcountries.eu/. Use data from the API to create questions and answers.
+**API**: https://restcountries.eu/
 
 **Design** : https://www.figma.com/file/Gw0ZNBbYN8asqFlZWy3jG1
 
 **Live app** : https://country-quiz-app.netlify.app/
 
-<h1 align="center">{Your project name}</h1>
+**My app** : https://country-quiz-tantely.netlify.app/
+
+<h1 align="center">Country quiz</h1>
 
 <div align="center">
   <h3>
@@ -27,7 +29,7 @@
 ## Table of Contents
 
 -   [Overview](#overview)
-    -   [Built With](#built-with)
+-   [Built With](#built-with)
 -   [Features](#features)
 -   [How to use](#how-to-use)
 -   [Contact](#contact)
@@ -42,25 +44,23 @@
 ![screenshot](./assets/tryagain.jpg)
 ![screenshot](./assets/flag.jpg)
 
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
 -   You can see my demo in the following link 
     <a href="https://country-quiz-tantely.netlify.app/">
       Work Demo
-    </a>?
--   What was your experience?
--   Well, This has been the funnest project ever, I learned using custom    hooks which I am happy with to know a litle bit about it. I also learned to use proptypes but so far it's still blury but I am sure in long time of proctice it will come
--   Wisdom that I would like to share is that, it is very crucial to have a general idea about what the app is doing and start to break big problems to smaller once. No matter hoe tough it is, break the big problem as small as possible before tackling them.
+    </a>. The project was fun to play with, I loved it. Although it is not perfect, most of the users stories are accomplished. You can see already the questions are displayed as well as the answers. You can also choose an answer for each question. I went a bit for an extra mile I added some sound when the users click and answer which is not perfect but I wanted to experiment, I also added one state that closes and opens the game.
+
+-   My experience was when I was working out a big statement, I needed to break it down into as small as possible parts. It is much easier to handle it little by little. Figuring out what the app does is very important before you dive into coding.
+
+-   Well, This has been the funnest project ever, I learned using custom hooks which I am happy with to know a litle bit about it. I also learned to use proptypes but so far it's still blury but I am sure in long time of proctice it will come easely.
+
+-   One thing I think is a wisdom that I would like to share is : it is very crucial to have a general idea about what the app is doing and start to break big problems to smaller once before diving into coding. No matter how tough it is, break the big problem down into as small parts as possible before tackling them. If you have a good base the likelyhood of having a good end is very heigh.
 
 ### Built With
 
-<!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
 -   [React](https://reactjs.org/)
-
-## Features
-
-<!-- List the features of your application or follow the template. Don't share the figma file here :) -->
+-   [Css](https://css.org/)
 
 ## How To Use
 
@@ -85,6 +85,4 @@ $ npm start
 
 ## Contact
 
--   Website [your-website.com](https://{your-web-site-link})
 -   GitHub [@your-username](https://github.com/starjardin)
--   Twitter [@your-twitter](https://{twitter.com/your-username})
