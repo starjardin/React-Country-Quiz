@@ -1,13 +1,11 @@
 import React, { useState, useContext } from 'react'
 import ButtonNext from "./ButtonNext"
+import propTypes from 'prop-types'
 import useHandleAnswers from '../utility/useHandleAnswers'
 import { CountriesContext } from '../context/countriesContext'
 
-export default function Answers ({ 
-  sortedRandomNumber,
-  randomNumber1,
-}) {
-  const { countries, getCountries, score, setScore } = useContext(CountriesContext)
+export default function Answers ({ sortedRandomNumber, randomNumber1 }) {
+  const { countries } = useContext(CountriesContext)
   const [ isAnswerCorrect, setIsAnswerCorrect ] = useState(false)
   const [ isQuestionAnswered, setIsQuestionAnswered ] = useState(false)
   const { handleAnswerIsNotTrue, handleAnswerIsTrue } = useHandleAnswers({
@@ -51,4 +49,14 @@ export default function Answers ({
       />}
     </>
   )
+}
+
+Answers.propTypes = {
+  countries : propTypes.shape({
+    name : propTypes.string.isRequired,
+    capital : propTypes.string,
+    flag : propTypes
+  }),
+  score : propTypes.number,
+  getCountries : propTypes.func,
 }

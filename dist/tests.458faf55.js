@@ -33853,541 +33853,151 @@ if ("development" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"context/countriesContext.js":[function(require,module,exports) {
+},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"test.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CountriesContextProvider = CountriesContextProvider;
-exports.CountriesContext = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-const CountriesContext = _react.default.createContext();
-
-exports.CountriesContext = CountriesContext;
-const API_KEY = "https://restcountries.eu/rest/v2/all";
-
-function CountriesContextProvider(props) {
-  const [countries, setCountriesName] = (0, _react.useState)([]);
+// import QuizResult from './QuizResult';
+function QuizData() {
+  const [countries, setCountries] = (0, _react.useState)([]);
+  const [randomCountry, setRandomCountry] = (0, _react.useState)({});
+  const [questionNum, setQuestionNum] = (0, _react.useState)(0);
+  const [randomOptions, setRandomOptions] = (0, _react.useState)([]);
+  const [isUserWin, setIsUserWin] = (0, _react.useState)('');
+  const [bgColor, setBgColor] = (0, _react.useState)('white');
   const [score, setScore] = (0, _react.useState)(0);
-  const [isGameClosed, setIsGameClosed] = (0, _react.useState)(false);
+  const [isClicked, setIsClicked] = (0, _react.useState)(false);
 
-  const getCountries = async () => {
-    const res = await fetch(API_KEY);
-    const data = await res.json();
-    setCountriesName(data);
+  const getData = async () => {
+    const apiUrl = "https://restcountries.eu/rest/v2/all";
+
+    try {
+      const res = await fetch(apiUrl);
+      const data = await res.json();
+      setCountries(data);
+      getRandomCountry(data);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   (0, _react.useEffect)(() => {
-    getCountries();
-  }, []);
-  return /*#__PURE__*/_react.default.createElement(CountriesContext.Provider, {
-    value: {
-      countries,
-      getCountries,
-      score,
-      setScore,
-      isGameClosed,
-      setIsGameClosed
-    }
-  }, props.children);
-}
-},{"react":"node_modules/react/index.js"}],"components/ButtonNext.js":[function(require,module,exports) {
-"use strict";
+    getData();
+  }, [questionNum]);
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = ButtonNext;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactRouterDom = require("react-router-dom");
-
-var _countriesContext = require("../context/countriesContext");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function ButtonNext({
-  isAnswerCorrect,
-  setIsQuestionAnswered
-}) {
-  const {
-    getCountries,
-    setScore
-  } = (0, _react.useContext)(_countriesContext.CountriesContext);
-
-  function handleNextButtonClick() {
-    getCountries();
-    setScore(prevScore => prevScore + 1);
-    setIsQuestionAnswered(false);
-  }
-
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, isAnswerCorrect ? /*#__PURE__*/_react.default.createElement("button", {
-    onClick: handleNextButtonClick,
-    className: "next"
-  }, "Next") : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/tryAgain"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "next"
-  }, "Next")));
-}
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../context/countriesContext":"context/countriesContext.js"}],"assets/buzzer-false.mp3":[function(require,module,exports) {
-module.exports = "/buzzer-false.a7c980dd.mp3";
-},{}],"assets/buzzer-true.mp3":[function(require,module,exports) {
-module.exports = "/buzzer-true.ba203c02.mp3";
-},{}],"utility/useAddSound.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = useAddSound;
-
-var _buzzerFalse = _interopRequireDefault(require("../assets/buzzer-false.mp3"));
-
-var _buzzerTrue = _interopRequireDefault(require("../assets/buzzer-true.mp3"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function useAddSound() {
-  function addFalseBuzzSound() {
-    let buzzSoundFroWrongAnswer = new Audio(_buzzerFalse.default);
-    buzzSoundFroWrongAnswer.play();
-  }
-
-  function addTrueBuzzSound() {
-    let buzzSoundFromCorrectAnswer = new Audio(_buzzerTrue.default);
-    buzzSoundFromCorrectAnswer.play();
-  }
-
-  return {
-    addTrueBuzzSound,
-    addFalseBuzzSound
-  };
-}
-},{"../assets/buzzer-false.mp3":"assets/buzzer-false.mp3","../assets/buzzer-true.mp3":"assets/buzzer-true.mp3"}],"utility/useHandleAnswers.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = useHandlegAnswers;
-
-var _useAddSound = _interopRequireDefault(require("./useAddSound"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function useHandlegAnswers({
-  sortedRandomNumber,
-  countriesName,
-  randomNumber1,
-  setIsAnswerCorrect
-}) {
-  const {
-    addTrueBuzzSound,
-    addFalseBuzzSound
-  } = (0, _useAddSound.default)();
-
-  function handleAnswerIsNotTrue(e, buttons) {
-    addFalseBuzzSound(); //Find the index of the true answer
-
-    const indexOfTheRightAnswer = sortedRandomNumber.find(index => {
-      return countriesName[index].name === countriesName[randomNumber1].name;
+  function getRandomCountry(randomCountry) {
+    const random = randomCountry[Math.floor(Math.random() * randomCountry.length)];
+    const randomOpt1 = randomCountry[Math.floor(Math.random() * randomCountry.length)];
+    const randomOpt2 = randomCountry[Math.floor(Math.random() * randomCountry.length)];
+    const randomOpt3 = randomCountry[Math.floor(Math.random() * randomCountry.length)];
+    const randomOption = [random.name, randomOpt1.name, randomOpt2.name, randomOpt3.name];
+    randomOption.sort(() => {
+      return 0.5 - Math.random();
     });
-    const rightAnswer = countriesName[indexOfTheRightAnswer].name;
-    setIsAnswerCorrect(false);
-    e.target.classList.add("incorrect"); // find which button contains the right answer
-
-    const buttonwithTheCorrectAnswer = buttons.find(button => {
-      return button.dataset.value === rightAnswer;
-    });
-    buttonwithTheCorrectAnswer.classList.add("correct");
+    setRandomCountry(random);
+    setRandomOptions(randomOption);
   }
 
-  function handleAnswerIsTrue(e) {
-    addTrueBuzzSound();
+  console.log(randomOption);
 
-    if (countriesName[randomNumber1].name === e.target.dataset.value) {
-      setIsAnswerCorrect(true);
-      e.target.classList.add("correct");
-    }
-  }
+  function handleClick(e) {
+    e.preventDefault();
 
-  return {
-    handleAnswerIsNotTrue,
-    handleAnswerIsTrue
-  };
-}
-},{"./useAddSound":"utility/useAddSound.js"}],"components/Answers.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Answers;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _ButtonNext = _interopRequireDefault(require("./ButtonNext"));
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
-var _useHandleAnswers = _interopRequireDefault(require("../utility/useHandleAnswers"));
-
-var _countriesContext = require("../context/countriesContext");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function Answers({
-  sortedRandomNumber,
-  randomNumber1
-}) {
-  const {
-    countries
-  } = (0, _react.useContext)(_countriesContext.CountriesContext);
-  const [isAnswerCorrect, setIsAnswerCorrect] = (0, _react.useState)(false);
-  const [isQuestionAnswered, setIsQuestionAnswered] = (0, _react.useState)(false);
-  const {
-    handleAnswerIsNotTrue,
-    handleAnswerIsTrue
-  } = (0, _useHandleAnswers.default)({
-    sortedRandomNumber,
-    countriesName: countries,
-    randomNumber1,
-    setIsAnswerCorrect
-  });
-
-  function handleAnswers(e) {
-    //set isQuestionAnswered to true when the question is answered (click one of the answers)
-    setIsQuestionAnswered(true);
-    const container = e.target.parentElement;
-    const buttons = Array.from(container.querySelectorAll(".btn")); //disable the buttons after clicking once so that the user can no have multi answers
-
-    buttons.map(button => button.setAttribute("disabled", ""));
-
-    if (countries[randomNumber1].name === e.target.dataset.value) {
-      handleAnswerIsTrue(e);
+    if (e.target.value !== randomCountry.name) {
+      setIsUserWin({
+        score: score + 1,
+        isUserWin: true,
+        bgColor: {
+          backgroundColor: '#81C784'
+        }
+      });
+      setIsClicked(true);
     } else {
-      handleAnswerIsNotTrue(e, buttons);
+      setIsUserWin({
+        isUserWin: 'Lose',
+        bgColor: {
+          backgroundColor: '#FF8A65'
+        }
+      });
+      setIsClicked(true);
     }
   }
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, sortedRandomNumber.map(indexArr => /*#__PURE__*/_react.default.createElement("button", {
-    key: countries[indexArr].flag,
-    className: `btn answers`,
-    "data-value": countries[indexArr].name,
-    onClick: handleAnswers
-  }, countries[indexArr].name)), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
-    isAnswerCorrect: isAnswerCorrect,
-    setIsQuestionAnswered: setIsQuestionAnswered
-  }));
-}
-
-Answers.propTypes = {
-  countries: _propTypes.default.shape({
-    name: _propTypes.default.string.isRequired,
-    capital: _propTypes.default.string,
-    flag: _propTypes.default
-  }),
-  score: _propTypes.default.number,
-  getCountries: _propTypes.default.func
-};
-},{"react":"node_modules/react/index.js","./ButtonNext":"components/ButtonNext.js","prop-types":"node_modules/prop-types/index.js","../utility/useHandleAnswers":"utility/useHandleAnswers.js","../context/countriesContext":"context/countriesContext.js"}],"components/Header.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Header;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Header() {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, "Country Quiz"));
-}
-},{"react":"node_modules/react/index.js"}],"assets/winners.svg":[function(require,module,exports) {
-module.exports = "/winners.b80fe258.svg";
-},{}],"components/ButtonTryAgain.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = ButtonNext;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactRouterDom = require("react-router-dom");
-
-var _countriesContext = require("../context/countriesContext");
-
-var _winners = _interopRequireDefault(require("./../assets/winners.svg"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function ButtonNext() {
-  function handleTryAgainButtonClick() {
-    getCountries();
-    setScore(0);
-  }
-
-  const {
-    getCountries,
-    score,
-    setScore
-  } = (0, _react.useContext)(_countriesContext.CountriesContext);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "tryagain"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _winners.default,
-    alt: "winner"
-  }), /*#__PURE__*/_react.default.createElement("h3", {
-    className: "results"
-  }, "Results"), /*#__PURE__*/_react.default.createElement("p", null, "You got ", /*#__PURE__*/_react.default.createElement("span", null, score), " correct answers"), /*#__PURE__*/_react.default.createElement("p", null, score != 0 && `Here is your reward ${score} ${score > 1 ? "slices of pizzas" : "slice of pizza"} 🍕`), /*#__PURE__*/_react.default.createElement("p", null, score > 5 && score <= 10 && "Good score . Why don't you try again, you'll get heigher score"), /*#__PURE__*/_react.default.createElement("p", null, score > 10 && score <= 15 && "Amaizing! You are a good canditate"), /*#__PURE__*/_react.default.createElement("p", null, score > 15 && score < 250 && "Amaizing! You beat the best players"), /*#__PURE__*/_react.default.createElement("p", null, score > 250 && "Amaizing! You know about all of the contries"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    onClick: handleTryAgainButtonClick
-  }, "Try again"))));
-}
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../context/countriesContext":"context/countriesContext.js","./../assets/winners.svg":"assets/winners.svg"}],"components/Questions.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Questions;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _countriesContext = require("../context/countriesContext");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function Questions({
-  randomNumber1
-}) {
-  const {
-    countries,
-    getCountries
-  } = (0, _react.useContext)(_countriesContext.CountriesContext);
-  const randomQuestionNumber = Math.floor(Math.random() * 2);
-
-  if (!countries[randomNumber1].capital || !countries[randomNumber1].flag) {
-    getCountries();
-  }
-
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, randomQuestionNumber === 0 ? /*#__PURE__*/_react.default.createElement("h2", {
-    className: "question"
-  }, countries[randomNumber1].capital && countries[randomNumber1].capital, " is the capital of?") : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
-    src: countries[randomNumber1].flag,
-    className: "flag"
-  }), /*#__PURE__*/_react.default.createElement("h2", {
-    className: "question"
-  }, "Which country does this flag belong to?")));
-}
-},{"react":"node_modules/react/index.js","../context/countriesContext":"context/countriesContext.js"}],"assets/adventure.svg":[function(require,module,exports) {
-module.exports = "/adventure.25e86348.svg";
-},{}],"components/TopRightImage.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = TopRightImage;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _adventure = _interopRequireDefault(require("./../assets/adventure.svg"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function TopRightImage() {
-  return /*#__PURE__*/_react.default.createElement("img", {
-    src: _adventure.default,
-    alt: "adventure",
-    className: "adventure"
-  });
-}
-},{"react":"node_modules/react/index.js","./../assets/adventure.svg":"assets/adventure.svg"}],"utility/useRandomNumber.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = useRandomNumber;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _countriesContext = require("../context/countriesContext");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function useRandomNumber() {
-  const {
-    countries
-  } = (0, _react.useContext)(_countriesContext.CountriesContext);
-  const randomNumber1 = Math.floor(Math.random() * countries.length);
-  const randomNumber2 = Math.floor(Math.random() * countries.length);
-  const randomNumber3 = Math.floor(Math.random() * countries.length);
-  const randomNumber4 = Math.floor(Math.random() * countries.length);
-  const randomNumberArr = [randomNumber1, randomNumber4, randomNumber2, randomNumber3]; //Sort the random numbers here to change the right answer no to stay in one place
-
-  const sortedRandomNumber = randomNumberArr.sort((a, b) => b - a);
-  return {
-    randomNumber1,
-    randomNumber2,
-    randomNumber3,
-    randomNumber4,
-    sortedRandomNumber
+  const handleNext = () => {
+    if (!isClicked) {
+      setIsClicked(false);
+      setQuestionNum(questionNum + 1);
+      setScore(score + 1);
+    } else {
+      setScore(0);
+    }
   };
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "Quiz-card"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "wrapper"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "question-component"
+  }, questionNum % 2 === 0 ? /*#__PURE__*/_react.default.createElement("div", {
+    className: "question-text1"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    className: "flag",
+    src: randomCountry.flag,
+    alt: "flag"
+  }), /*#__PURE__*/_react.default.createElement("h3", {
+    className: "question"
+  }, "Which country does this flag belong to?")) : /*#__PURE__*/_react.default.createElement("h3", {
+    className: "question2"
+  }, randomCountry.capital, " is the capital of")), /*#__PURE__*/_react.default.createElement("form", {
+    onClick: handleClick
+  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+    className: "options",
+    value: randomOption[0]
+  }, randomOption[0]), /*#__PURE__*/_react.default.createElement("button", {
+    className: "options",
+    value: randomOption[1]
+  }, randomOption[1]), /*#__PURE__*/_react.default.createElement("button", {
+    className: "options",
+    value: randomOption[2]
+  }, randomOption[2]), /*#__PURE__*/_react.default.createElement("button", {
+    className: "options",
+    value: randomOption[3]
+  }, randomOption[3])), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: handleNext,
+    className: "next-button"
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/component/QuizResult"
+  }, "Next")))));
 }
-},{"react":"node_modules/react/index.js","../context/countriesContext":"context/countriesContext.js"}],"components/TriggerCloseButton.js":[function(require,module,exports) {
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = TriggerCloseButton;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactRouterDom = require("react-router-dom");
-
-var _countriesContext = require("../context/countriesContext");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function TriggerCloseButton() {
-  const {
-    isGameClosed,
-    setIsGameClosed
-  } = (0, _react.useContext)(_countriesContext.CountriesContext);
-
-  function triggercloseButton() {
-    setIsGameClosed(prevState => !prevState);
-  }
-
-  console.log(isGameClosed);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, isGameClosed ? /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "triggerCloseButton",
-    onClick: triggercloseButton
-  }, /*#__PURE__*/_react.default.createElement("span", null, "open country quiz game"))) : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/gameClosed"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "triggerCloseButton",
-    onClick: triggercloseButton
-  }, /*#__PURE__*/_react.default.createElement("span", null, "close country quiz game"))), isGameClosed && /*#__PURE__*/_react.default.createElement("h2", {
-    className: "header__gameclosed"
-  }, "You can open the country quiz game by clicking the top left icon"));
-}
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../context/countriesContext":"context/countriesContext.js"}],"App.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = App;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactRouterDom = require("react-router-dom");
-
-var _Answers = _interopRequireDefault(require("./components/Answers"));
-
-var _Header = _interopRequireDefault(require("./components/Header"));
-
-var _ButtonTryAgain = _interopRequireDefault(require("./components/ButtonTryAgain"));
-
-var _Questions = _interopRequireDefault(require("./components/Questions"));
-
-var _TopRightImage = _interopRequireDefault(require("./components/TopRightImage"));
-
-var _useRandomNumber = _interopRequireDefault(require("./utility/useRandomNumber"));
-
-var _countriesContext = require("./context/countriesContext");
-
-var _TriggerCloseButton = _interopRequireDefault(require("./components/TriggerCloseButton"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function App() {
-  const {
-    countries
-  } = (0, _react.useContext)(_countriesContext.CountriesContext); //Import random numbers from useRandomNumber
-
-  const {
-    randomNumber1,
-    randomNumber2,
-    randomNumber3,
-    randomNumber4,
-    sortedRandomNumber
-  } = (0, _useRandomNumber.default)();
-
-  if (!countries.length || randomNumber1 === randomNumber2 || randomNumber1 === randomNumber3 || randomNumber1 === randomNumber4 || randomNumber2 === randomNumber3 || randomNumber2 === randomNumber4 || randomNumber3 === randomNumber4) {
-    return null;
-  }
-
-  console.log(countries[randomNumber1].name);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/_react.default.createElement(_TriggerCloseButton.default, null), /*#__PURE__*/_react.default.createElement(_TopRightImage.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
-    exact: true,
-    path: "/"
-  }, /*#__PURE__*/_react.default.createElement(_Questions.default, {
-    randomNumber1: randomNumber1
-  }), /*#__PURE__*/_react.default.createElement(_Answers.default, {
-    sortedRandomNumber: sortedRandomNumber,
-    randomNumber1: randomNumber1
-  })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
-    path: "/tryAgain"
-  }, /*#__PURE__*/_react.default.createElement(_ButtonTryAgain.default, null))))));
-}
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Answers":"components/Answers.js","./components/Header":"components/Header.js","./components/ButtonTryAgain":"components/ButtonTryAgain.js","./components/Questions":"components/Questions.js","./components/TopRightImage":"components/TopRightImage.js","./utility/useRandomNumber":"utility/useRandomNumber.js","./context/countriesContext":"context/countriesContext.js","./components/TriggerCloseButton":"components/TriggerCloseButton.js"}],"index.js":[function(require,module,exports) {
+var _default = QuizData;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"tests.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _App = _interopRequireDefault(require("./App"));
-
-var _countriesContext = require("./context/countriesContext");
+var _test = _interopRequireDefault(require("./test"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_countriesContext.CountriesContextProvider, null, /*#__PURE__*/_react.default.createElement(_App.default, null)), document.querySelector('#root'));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./App":"App.js","./context/countriesContext":"context/countriesContext.js"}],"../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_test.default, null), document.querySelector("#root"));
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./test":"test.js"}],"../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -34415,7 +34025,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59328" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61247" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -34591,5 +34201,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/country-quiz.e31bb0bc.js.map
+},{}]},{},["../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","tests.js"], null)
+//# sourceMappingURL=/tests.458faf55.js.map

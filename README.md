@@ -72,8 +72,8 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
       Work Demo
     </a>?
 -   What was your experience?
--   Well, This has been the funnest project ever, I learned using custom    hooks that I first happy with to know it.
--   Your wisdom? :)
+-   Well, This has been the funnest project ever, I learned using custom    hooks which I am happy with to know a litle bit about it. I also learned to use proptypes but so far it's still blury but I am sure in long time of proctice it will come
+-   Wisdom that I would like to share is that, it is very crucial to have a general idea about what the app is doing and start to break big problems to smaller once. No matter hoe tough it is, break the big problem as small as possible before tackling them.
 
 ### Built With
 

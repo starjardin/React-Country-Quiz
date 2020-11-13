@@ -9,7 +9,7 @@ export default function useHandlegAnswers ({
   const { addTrueBuzzSound, addFalseBuzzSound } = useAddSound()
 
   function handleAnswerIsNotTrue (e, buttons) {
-    // addFalseBuzzSound()
+    addFalseBuzzSound()
     //Find the index of the true answer
     const indexOfTheRightAnswer = sortedRandomNumber.find(index => {
       return countriesName[index].name === countriesName[randomNumber1].name
@@ -25,7 +25,7 @@ export default function useHandlegAnswers ({
   }
 
   function handleAnswerIsTrue (e) {
-    // addTrueBuzzSound()
+    addTrueBuzzSound()
     if ((countriesName[randomNumber1].name) === (e.target.dataset.value)) {
       setIsAnswerCorrect(true)
       e.target.classList.add("correct")
