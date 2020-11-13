@@ -3,6 +3,7 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
+  min-height: -webkit-fill-available;
   font-family: Poppins;
   font-style: normal;
 }
@@ -72,6 +73,11 @@ h1 {
 .incorrect:hover {
   position: relative;
   background-color: #EA8282;
+}
+
+.btn.answers.correct,
+.btn.answers.incorrect {
+  color: #fff;
 }
 
 .incorrect::after {
@@ -151,7 +157,7 @@ h1 {
   outline : none;
 }
 
-.btn.answers {
+.answers {
   color: rgba(96, 102, 208, 0.7);
   transition: .3s;
 }

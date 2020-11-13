@@ -34152,7 +34152,7 @@ function ButtonNext() {
     alt: "winner"
   }), /*#__PURE__*/_react.default.createElement("h3", {
     className: "results"
-  }, "Results"), /*#__PURE__*/_react.default.createElement("p", null, "You got ", /*#__PURE__*/_react.default.createElement("span", null, score), " correct answers"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, "Results"), /*#__PURE__*/_react.default.createElement("p", null, "You got ", /*#__PURE__*/_react.default.createElement("span", null, score), " correct answers"), /*#__PURE__*/_react.default.createElement("p", null, score != 0 && `Here is your reward ${score} ${score > 1 ? "slices of pizzas" : "slice of pizza"} 🍕`), /*#__PURE__*/_react.default.createElement("p", null, score > 5 && score <= 10 && "Good score . Why don't you try again, you'll get heigher score"), /*#__PURE__*/_react.default.createElement("p", null, score > 10 && score <= 15 && "Amaizing! You are a good canditate"), /*#__PURE__*/_react.default.createElement("p", null, score > 15 && score < 250 && "Amaizing! You beat the best players"), /*#__PURE__*/_react.default.createElement("p", null, score > 250 && "Amaizing! You know about all of the contries"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/"
   }, /*#__PURE__*/_react.default.createElement("button", {
     onClick: handleTryAgainButtonClick
@@ -34348,6 +34348,7 @@ function App() {
     return null;
   }
 
+  console.log(countries[randomNumber1].name);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
   }, /*#__PURE__*/_react.default.createElement(_TriggerCloseButton.default, null), /*#__PURE__*/_react.default.createElement(_TopRightImage.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
