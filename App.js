@@ -32,8 +32,6 @@ export default function App () {
       return null
   }
 
-  console.log(countries[randomNumber1].name);
-
   return (
     <>
       <Header />
