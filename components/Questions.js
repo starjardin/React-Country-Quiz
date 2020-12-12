@@ -13,7 +13,6 @@ export default function Questions ({
     getCountries()
   }
 
-
   return (
     <>
       {randomQuestionNumber === 0  

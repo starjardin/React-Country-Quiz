@@ -1,13 +1,12 @@
 import React, { useState, useContext, useRef } from 'react'
-import styled from 'styled-components'
 
+import useAddSound from './useAddSound'
 import ButtonNext from "./ButtonNext"
 import propTypes from 'prop-types'
-import useHandleAnswers from '../utility/useHandleAnswers'
 import { CountriesContext } from '../context/countriesContext'
 
 export default function Answers({ sortedRandomNumber, randomNumber1 }) {
-  
+  const { addTrueBuzzSound, addFalseBuzzSound } = useAddSound()
   let refContainer = useRef(null)
   const { countries } = useContext(CountriesContext)
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false)
@@ -20,11 +19,13 @@ export default function Answers({ sortedRandomNumber, randomNumber1 }) {
     setIsQuestionAnswered(true)
     if (questionCountryName === targetValue) {
       e.target.classList.add("correct")
+      addTrueBuzzSound()
       setIsAnswerCorrect(true)
     } else {
       e.target.classList.add("incorrect")
       refContainer.current.classList.add("correct")
       setIsAnswerCorrect(false)
+      addFalseBuzzSound()
     }
   }
 

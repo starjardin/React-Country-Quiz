@@ -84,4 +84,4 @@ $ npm start
 
 ## Contact
 
--   GitHub [@your-username](https://github.com/starjardin)
+-   GitHub [@starjardin](https://github.com/starjardin)
