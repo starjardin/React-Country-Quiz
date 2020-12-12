@@ -35839,7 +35839,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function ButtonNext({
   isAnswerCorrect,
-  setIsQuestionAnswered
+  setIsQuestionAnswered,
+  refContainer
 }) {
   const {
     getCountries,
@@ -35848,6 +35849,7 @@ function ButtonNext({
 
   function handleNextButtonClick() {
     getCountries();
+    refContainer.current.classList.remove("correct");
     setScore(prevScore => prevScore + 1);
     setIsQuestionAnswered(false);
   }
@@ -36000,7 +36002,6 @@ function Answers({
     }
   }
 
-  console.log(isQuestionAnswered);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, sortedRandomNumber.map((indexArr, index) => /*#__PURE__*/_react.default.createElement("button", {
     key: index,
     className: "btn answers",
@@ -36009,6 +36010,7 @@ function Answers({
     onClick: handleAnswers,
     disabled: isQuestionAnswered
   }, countries[indexArr].name)), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
+    refContainer: refContainer,
     isAnswerCorrect: isAnswerCorrect,
     setIsQuestionAnswered: setIsQuestionAnswered
   }));

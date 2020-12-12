@@ -28,8 +28,6 @@ export default function Answers({ sortedRandomNumber, randomNumber1 }) {
     }
   }
 
-  console.log(isQuestionAnswered);
-
   return (
     <>
       {sortedRandomNumber.map((indexArr, index) => (
@@ -47,6 +45,7 @@ export default function Answers({ sortedRandomNumber, randomNumber1 }) {
       }
       {isQuestionAnswered && 
         <ButtonNext 
+          refContainer={refContainer}
           isAnswerCorrect={isAnswerCorrect}
           setIsQuestionAnswered={setIsQuestionAnswered}
       />}
