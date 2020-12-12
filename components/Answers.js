@@ -1,13 +1,22 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef } from 'react'
+import styled from 'styled-components'
+
 import ButtonNext from "./ButtonNext"
 import propTypes from 'prop-types'
 import useHandleAnswers from '../utility/useHandleAnswers'
 import { CountriesContext } from '../context/countriesContext'
 
+const ButtonStyle = styled.div`
+  .correct {
+    // background-color : blue;
+  }
+`
+
 export default function Answers ({ sortedRandomNumber, randomNumber1 }) {
   const { countries } = useContext(CountriesContext)
-  const [ isAnswerCorrect, setIsAnswerCorrect ] = useState(false)
-  const [ isQuestionAnswered, setIsQuestionAnswered ] = useState(false)
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState(false)
+  const [isQuestionAnswered, setIsQuestionAnswered] = useState(false)
+  const [correctCountry, setCorrectCountry] = useState({})
   const { handleAnswerIsNotTrue, handleAnswerIsTrue } = useHandleAnswers({
     sortedRandomNumber,
     countriesName: countries,
@@ -18,36 +27,68 @@ export default function Answers ({ sortedRandomNumber, randomNumber1 }) {
   function handleAnswers (e) {
     //set isQuestionAnswered to true when the question is answered (click one of the answers)
     setIsQuestionAnswered(true)
-    const container = e.target.parentElement
-    const buttons = Array.from(container.querySelectorAll(".btn"))
+    // const container = e.target.parentElement
+    // const buttons = Array.from(container.querySelectorAll(".btn"))
     //disable the buttons after clicking once so that the user can no have multi answers
-    buttons.map(button => button.setAttribute("disabled", ""))
+    // buttons.map(button => button.setAttribute("disabled", ""))
 
     if ((countries[randomNumber1].name) === (e.target.dataset.value)) {
-      handleAnswerIsTrue(e)
+      // handleAnswerIsTrue(e)
     } else {
-      handleAnswerIsNotTrue(e, buttons)
+      setCorrectCountry(countries.find(country => country.name === countries[randomNumber1].name))
+      if (correctCountry) {
+        setCorrectAnswer(true)
+      }
     }
   }
 
   return (
     <>
-      {sortedRandomNumber.map(indexArr => (
-          <button 
-            key={countries[indexArr].flag}
-            className={`btn answers`}
-            data-value={countries[indexArr].name}
-            onClick={handleAnswers}
-          >
-            {countries[indexArr].name}
-          </button>
-      ))}
+      <ButtonStyle>
+        {sortedRandomNumber.map((indexArr, index) => (
+          <ButtonElement
+            key={index}
+            countries={countries}
+            indexArr={indexArr}
+            correctCountry={correctCountry}
+            randomNumber1={randomNumber1}
+          />
+        ))}
+      </ButtonStyle>
       {isQuestionAnswered && 
         <ButtonNext 
           isAnswerCorrect={isAnswerCorrect}
           setIsQuestionAnswered={setIsQuestionAnswered}
       />}
     </>
+  )
+}
+
+function ButtonElement({ countries, indexArr, randomNumber1 }) {
+  let classNames = `btn answers`
+  let style = { backgroundColor: "blue" }
+  
+  function handleAnswers(e, value) {
+    if (e.target.dataset.value.toLowerCase() === countries[randomNumber1].name.toLowerCase()) {
+      e.target.classList.add("correct")
+    } else {
+      e.target.classList.add("incorrect")
+      console.log(value);
+    }
+  }
+
+  return (
+    <button 
+      key={countries[indexArr].flag}
+      className={classNames}
+      data-value={countries[indexArr].name}
+      onClick={(e) => {
+        const country = countries.find(country => country.name === countries[randomNumber1].name)
+        console.log(country);
+      }}
+    >
+      {countries[indexArr].name}
+    </button>
   )
 }
 

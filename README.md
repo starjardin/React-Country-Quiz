@@ -60,7 +60,6 @@
 
 
 -   [React](https://reactjs.org/)
--   [Css](https://css.org/)
 
 ## How To Use
 

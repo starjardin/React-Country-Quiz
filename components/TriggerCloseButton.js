@@ -8,7 +8,7 @@ export default function TriggerCloseButton () {
   function triggercloseButton () {
     setIsGameClosed(prevState => !prevState)
   }
-  console.log(isGameClosed);
+
   return (
     <>
       {isGameClosed ? 
