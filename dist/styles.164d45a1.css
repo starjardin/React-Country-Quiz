@@ -68,6 +68,8 @@ h1 {
   background-image: url("/check-circle.ba98a79f.svg");
 }
 
+.incorrect,
+.incorrect:focus,
 .incorrect:hover {
   position: relative;
   background-color: #EA8282;
