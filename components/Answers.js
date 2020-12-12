@@ -1,6 +1,6 @@
 import React, { useState, useContext, useRef } from 'react'
 
-import useAddSound from './useAddSound'
+import useAddSound from '../utility/useAddSound'
 import ButtonNext from "./ButtonNext"
 import propTypes from 'prop-types'
 import { CountriesContext } from '../context/countriesContext'
