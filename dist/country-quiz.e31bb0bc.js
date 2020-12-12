@@ -35974,89 +35974,44 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-const ButtonStyle = _styledComponents.default.div`
-  .correct {
-    // background-color : blue;
-  }
-`;
-
 function Answers({
   sortedRandomNumber,
   randomNumber1
 }) {
+  let refContainer = (0, _react.useRef)(null);
   const {
     countries
   } = (0, _react.useContext)(_countriesContext.CountriesContext);
   const [isAnswerCorrect, setIsAnswerCorrect] = (0, _react.useState)(false);
   const [isQuestionAnswered, setIsQuestionAnswered] = (0, _react.useState)(false);
-  const [correctCountry, setCorrectCountry] = (0, _react.useState)({});
-  const {
-    handleAnswerIsNotTrue,
-    handleAnswerIsTrue
-  } = (0, _useHandleAnswers.default)({
-    sortedRandomNumber,
-    countriesName: countries,
-    randomNumber1,
-    setIsAnswerCorrect
-  });
+  const questionCountryName = countries[randomNumber1].name.toLowerCase().trim();
 
   function handleAnswers(e) {
-    //set isQuestionAnswered to true when the question is answered (click one of the answers)
-    setIsQuestionAnswered(true); // const container = e.target.parentElement
-    // const buttons = Array.from(container.querySelectorAll(".btn"))
-    //disable the buttons after clicking once so that the user can no have multi answers
-    // buttons.map(button => button.setAttribute("disabled", ""))
+    const targetValue = e.target.dataset.value.toLowerCase().trim();
+    setIsQuestionAnswered(true);
 
-    if (countries[randomNumber1].name === e.target.dataset.value) {// handleAnswerIsTrue(e)
+    if (questionCountryName === targetValue) {
+      e.target.classList.add("correct");
+      setIsAnswerCorrect(true);
     } else {
-      setCorrectCountry(countries.find(country => country.name === countries[randomNumber1].name));
-
-      if (correctCountry) {
-        setCorrectAnswer(true);
-      }
+      e.target.classList.add("incorrect");
+      refContainer.current.classList.add("correct");
+      setIsAnswerCorrect(false);
     }
   }
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(ButtonStyle, null, sortedRandomNumber.map((indexArr, index) => /*#__PURE__*/_react.default.createElement(ButtonElement, {
+  console.log(isQuestionAnswered);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, sortedRandomNumber.map((indexArr, index) => /*#__PURE__*/_react.default.createElement("button", {
     key: index,
-    countries: countries,
-    indexArr: indexArr,
-    correctCountry: correctCountry,
-    randomNumber1: randomNumber1
-  }))), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
+    className: "btn answers",
+    "data-value": countries[indexArr].name,
+    ref: countries[indexArr].name.toLowerCase().trim() === questionCountryName ? refContainer : null,
+    onClick: handleAnswers,
+    disabled: isQuestionAnswered
+  }, countries[indexArr].name)), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
     isAnswerCorrect: isAnswerCorrect,
     setIsQuestionAnswered: setIsQuestionAnswered
   }));
-}
-
-function ButtonElement({
-  countries,
-  indexArr,
-  randomNumber1
-}) {
-  let classNames = `btn answers`;
-  let style = {
-    backgroundColor: "blue"
-  };
-
-  function handleAnswers(e, value) {
-    if (e.target.dataset.value.toLowerCase() === countries[randomNumber1].name.toLowerCase()) {
-      e.target.classList.add("correct");
-    } else {
-      e.target.classList.add("incorrect");
-      console.log(value);
-    }
-  }
-
-  return /*#__PURE__*/_react.default.createElement("button", {
-    key: countries[indexArr].flag,
-    className: classNames,
-    "data-value": countries[indexArr].name,
-    onClick: e => {
-      const country = countries.find(country => country.name === countries[randomNumber1].name);
-      console.log(country);
-    }
-  }, countries[indexArr].name);
 }
 
 Answers.propTypes = {
