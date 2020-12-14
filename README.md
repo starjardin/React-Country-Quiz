@@ -30,10 +30,10 @@
 
 -   [Overview](#overview)
 -   [Built With](#built-with)
--   [Features](#features)
 -   [How to use](#how-to-use)
 -   [Contact](#contact)
 -   [Acknowledgements](#acknowledgements)
+-   [Descrition](#acknowledgements)
 
 <!-- OVERVIEW -->
 
@@ -52,9 +52,9 @@
 
 -   My experience was when I was working out a big statement, I needed to break it down into as small as possible parts. It is much easier to handle it little by little. Figuring out what the app does is very important before you dive into coding.
 
--   Well, This has been the funnest project ever, I learned using custom hooks which I am happy with to know a litle bit about it. I also learned to use proptypes but so far it's still blury but I am sure in long time of proctice it will come easely.
+-   Well, This has been the funnest project ever, I learned using custom hooks which I am happy with to know a litle bit about it. I also learned to use proptypes but so far it's still blury but I am sure in long time of practice it will come easely.
 
--   One thing I think is a wisdom that I would like to share is : it is very crucial to have a general idea about what the app is doing and start to break big problems to smaller once before diving into coding. No matter how tough it is, break the big problem down into as small parts as possible before tackling them. If you have a good base the likelyhood of having a good end is very heigh.
+-   One thing I think is a wisdom that I would like to share is : it is very crucial to have a general idea about what the app is doing and start to break big problems to smaller once before diving into coding. No matter how tough it is, break the big problems down into as small parts as possible before tackling them. If you have a good base the likelyhood of having a good end is very heigh.
 
 ### Built With
 
@@ -77,11 +77,14 @@ $ npm install
 # Run the app
 $ npm start
 ```
+## Contact
+
+-   GitHub [@starjardin](https://github.com/starjardin)
 
 ## Acknowledgements
 
 <!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example: -->
 
-## Contact
+## Description
 
--   GitHub [@starjardin](https://github.com/starjardin)
+The main purpose of this app is for practicing react (react hooks). This is a challenge from <a href="https://devChallenges.io">devChallenges.io</a> for front-end developers to boost their knowledge and their tool belt for their future. 
