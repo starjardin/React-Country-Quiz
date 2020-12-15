@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Answers from './components/Answers'
 import Header from './components/Header'
 import ButtonTryAgain from "./components/ButtonTryAgain"

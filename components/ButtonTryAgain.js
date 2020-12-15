@@ -10,6 +10,8 @@ export default function ButtonNext () {
     setScore(0)
   }
 
+  const pizzas = "🍕"
+
   const { getCountries, score, setScore } = useContext(CountriesContext)
   return (
     <>
@@ -18,7 +20,7 @@ export default function ButtonNext () {
         <h3 className="results">Results</h3>
         <p>You got <span>{score}</span> correct answers</p>
         <p>
-          {score != 0 && `Here is your reward : ${score} ${score > 1 ? " slices of pizzas" : "slice of pizza"} 🍕`} 
+          {score != 0 && `Here is your reward : ${score} ${score > 1 ? " slices of pizzas" : "slice of pizza"} ${pizzas.repeat(score)}`} 
         </p>
         <p>
           {score > 5 && score <= 10 && "Good score . Why don't you try again, you'll get heigher score"}

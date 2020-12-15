@@ -34100,6 +34100,7 @@ function ButtonNext() {
     setScore(0);
   }
 
+  const pizzas = "🍕";
   const {
     getCountries,
     score,
@@ -34112,7 +34113,7 @@ function ButtonNext() {
     alt: "winner"
   }), /*#__PURE__*/_react.default.createElement("h3", {
     className: "results"
-  }, "Results"), /*#__PURE__*/_react.default.createElement("p", null, "You got ", /*#__PURE__*/_react.default.createElement("span", null, score), " correct answers"), /*#__PURE__*/_react.default.createElement("p", null, score != 0 && `Here is your reward : ${score} ${score > 1 ? " slices of pizzas" : "slice of pizza"} 🍕`), /*#__PURE__*/_react.default.createElement("p", null, score > 5 && score <= 10 && "Good score . Why don't you try again, you'll get heigher score"), /*#__PURE__*/_react.default.createElement("p", null, score > 10 && score <= 15 && "Amaizing! You are a good canditate"), /*#__PURE__*/_react.default.createElement("p", null, score > 15 && score < 250 && "Amaizing! You beat the best players"), /*#__PURE__*/_react.default.createElement("p", null, score > 250 && "Congratulations! You know about all of the contries"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }, "Results"), /*#__PURE__*/_react.default.createElement("p", null, "You got ", /*#__PURE__*/_react.default.createElement("span", null, score), " correct answers"), /*#__PURE__*/_react.default.createElement("p", null, score != 0 && `Here is your reward : ${score} ${score > 1 ? " slices of pizzas" : "slice of pizza"} ${pizzas.repeat(score)}`), /*#__PURE__*/_react.default.createElement("p", null, score > 5 && score <= 10 && "Good score . Why don't you try again, you'll get heigher score"), /*#__PURE__*/_react.default.createElement("p", null, score > 10 && score <= 15 && "Amaizing! You are a good canditate"), /*#__PURE__*/_react.default.createElement("p", null, score > 15 && score < 250 && "Amaizing! You beat the best players"), /*#__PURE__*/_react.default.createElement("p", null, score > 250 && "Congratulations! You know about all of the contries"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/"
   }, /*#__PURE__*/_react.default.createElement("button", {
     onClick: handleTryAgainButtonClick
@@ -34363,7 +34364,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57996" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51353" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
