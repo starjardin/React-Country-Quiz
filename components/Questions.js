@@ -1,5 +1,11 @@
 import React, { useContext } from 'react'
+import styled from 'styled-components'
+
 import { CountriesContext } from '../context/countriesContext'
+
+const QuestionsContainer = styled.div`
+  min-height: 6rem;
+`
 
 export default function Questions ({ 
   randomNumber1, 
@@ -14,7 +20,7 @@ export default function Questions ({
   }
 
   return (
-    <>
+    <QuestionsContainer>
       {randomQuestionNumber === 0  
         ? <h2 className="question">
             {countries[randomNumber1].capital && countries[randomNumber1].capital} is the capital of?
@@ -26,6 +32,6 @@ export default function Questions ({
             </h2>
         </div>)
       }
-    </>
+    </QuestionsContainer>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import Answers from './components/Answers'
 import Header from './components/Header'
 import ButtonTryAgain from "./components/ButtonTryAgain"
@@ -11,7 +11,7 @@ import TriggerCloseButton from './components/TriggerCloseButton'
 
 export default function App () {
   const { countries } = useContext(CountriesContext)
-  //Import random numbers from useRandomNumber
+  //? Import random numbers from useRandomNumber
   const { 
           randomNumber1,
           randomNumber2,
@@ -29,7 +29,9 @@ export default function App () {
         randomNumber2 === randomNumber4 ||
         randomNumber3 === randomNumber4
     ) {
-      return null
+      return <Router>
+        <Redirect to="/" ></Redirect>
+      </Router>
   }
 
   return (
