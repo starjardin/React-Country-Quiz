@@ -101,6 +101,19 @@ h1 {
   text-align: center;
 }
 
+@media (max-width: 500px) {
+  .container {
+    max-width: 65vw;
+  }
+}
+
+@media (min-width: 500px) {
+  .container {
+    height: 60%;
+    min-height: 60%;
+  }
+}
+
 .tryagain {
   text-align: center;
   .results, p {

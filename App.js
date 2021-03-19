@@ -7,7 +7,6 @@ import Questions from './components/Questions'
 import TopRightImage from './components/TopRightImage'
 import useRandomNumber from './utility/useRandomNumber'
 import { CountriesContext } from './context/countriesContext'
-import TriggerCloseButton from './components/TriggerCloseButton'
 
 export default function App () {
   const { countries } = useContext(CountriesContext)
@@ -29,9 +28,17 @@ export default function App () {
         randomNumber2 === randomNumber4 ||
         randomNumber3 === randomNumber4
     ) {
-      return <Router>
-        <Redirect to="/" ></Redirect>
-      </Router>
+      return (<Router>
+        <Redirect to="/" >
+          <Questions 
+            randomNumber1={randomNumber1}
+          />
+          <Answers 
+            sortedRandomNumber={sortedRandomNumber}
+            randomNumber1={randomNumber1}
+          />
+        </Redirect>
+      </Router>)
   }
 
   return (
@@ -39,7 +46,6 @@ export default function App () {
       <Header />
       <Router >
         <div className="container">
-          <TriggerCloseButton />
           <TopRightImage />
           <Switch>
             <Route exact path="/">

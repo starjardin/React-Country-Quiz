@@ -5,7 +5,7 @@ import { CountriesContextProvider } from './context/countriesContext'
 
 ReactDOM.render(
   <CountriesContextProvider>
-      <App />
+    <App /> 
   </CountriesContextProvider>,
   document.querySelector('#root')
 )

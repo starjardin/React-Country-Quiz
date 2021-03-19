@@ -36144,49 +36144,7 @@ function useRandomNumber() {
     sortedRandomNumber
   };
 }
-},{"react":"node_modules/react/index.js","../context/countriesContext":"context/countriesContext.js"}],"components/TriggerCloseButton.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = TriggerCloseButton;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactRouterDom = require("react-router-dom");
-
-var _countriesContext = require("../context/countriesContext");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function TriggerCloseButton() {
-  const {
-    isGameClosed,
-    setIsGameClosed
-  } = (0, _react.useContext)(_countriesContext.CountriesContext);
-
-  function triggercloseButton() {
-    setIsGameClosed(prevState => !prevState);
-  }
-
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, isGameClosed ? /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "triggerCloseButton",
-    onClick: triggercloseButton
-  }, /*#__PURE__*/_react.default.createElement("span", null, "open country quiz game"))) : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/gameClosed"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "triggerCloseButton",
-    onClick: triggercloseButton
-  }, /*#__PURE__*/_react.default.createElement("span", null, "close country quiz game"))), isGameClosed && /*#__PURE__*/_react.default.createElement("h2", {
-    className: "header__gameclosed"
-  }, "You can open the country quiz game by clicking the top left icon"));
-}
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../context/countriesContext":"context/countriesContext.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../context/countriesContext":"context/countriesContext.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36212,8 +36170,6 @@ var _useRandomNumber = _interopRequireDefault(require("./utility/useRandomNumber
 
 var _countriesContext = require("./context/countriesContext");
 
-var _TriggerCloseButton = _interopRequireDefault(require("./components/TriggerCloseButton"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -36236,12 +36192,17 @@ function App() {
   if (!countries.length || randomNumber1 === randomNumber2 || randomNumber1 === randomNumber3 || randomNumber1 === randomNumber4 || randomNumber2 === randomNumber3 || randomNumber2 === randomNumber4 || randomNumber3 === randomNumber4) {
     return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Redirect, {
       to: "/"
-    }));
+    }, /*#__PURE__*/_react.default.createElement(_Questions.default, {
+      randomNumber1: randomNumber1
+    }), /*#__PURE__*/_react.default.createElement(_Answers.default, {
+      sortedRandomNumber: sortedRandomNumber,
+      randomNumber1: randomNumber1
+    })));
   }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
-  }, /*#__PURE__*/_react.default.createElement(_TriggerCloseButton.default, null), /*#__PURE__*/_react.default.createElement(_TopRightImage.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+  }, /*#__PURE__*/_react.default.createElement(_TopRightImage.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_Questions.default, {
@@ -36253,7 +36214,7 @@ function App() {
     path: "/tryAgain"
   }, /*#__PURE__*/_react.default.createElement(_ButtonTryAgain.default, null))))));
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Answers":"components/Answers.js","./components/Header":"components/Header.js","./components/ButtonTryAgain":"components/ButtonTryAgain.js","./components/Questions":"components/Questions.js","./components/TopRightImage":"components/TopRightImage.js","./utility/useRandomNumber":"utility/useRandomNumber.js","./context/countriesContext":"context/countriesContext.js","./components/TriggerCloseButton":"components/TriggerCloseButton.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Answers":"components/Answers.js","./components/Header":"components/Header.js","./components/ButtonTryAgain":"components/ButtonTryAgain.js","./components/Questions":"components/Questions.js","./components/TopRightImage":"components/TopRightImage.js","./utility/useRandomNumber":"utility/useRandomNumber.js","./context/countriesContext":"context/countriesContext.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -36295,7 +36256,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54984" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49899" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
