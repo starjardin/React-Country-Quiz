@@ -5,6 +5,9 @@ import { CountriesContext } from '../context/countriesContext'
 
 const QuestionsContainer = styled.div`
   min-height: 6rem;
+  div {
+    text-align: start;
+  }
 `
 
 export default function Questions ({ 
@@ -21,17 +24,19 @@ export default function Questions ({
 
   return (
     <QuestionsContainer>
-      {randomQuestionNumber === 0  
-        ? <h2 className="question">
-            {countries[randomNumber1].capital && countries[randomNumber1].capital} is the capital of?
-          </h2>
-        : (<div>
-            <img src={countries[randomNumber1].flag} className="flag"/>
-            <h2 className="question">
-              Which country does this flag belong to?
+      <div>
+        {randomQuestionNumber === 0  
+          ? <h2 className="question">
+              {countries[randomNumber1].capital && countries[randomNumber1].capital} is the capital of?
             </h2>
-        </div>)
-      }
+          : (<div>
+              <img src={countries[randomNumber1].flag} className="flag"/>
+              <h2 className="question">
+                Which country does this flag belong to?
+              </h2>
+          </div>)
+        }
+      </div>
     </QuestionsContainer>
   )
 }

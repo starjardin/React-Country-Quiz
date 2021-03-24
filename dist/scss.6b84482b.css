@@ -1,5 +1,5 @@
 html {
-  background-image: url("./assets/background.png");
+  background-image: url("/background.f2f908d8.png");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
@@ -52,38 +52,6 @@ h1 {
   background-color: #60BF88;
 }
 
-.correct::after,
-.incorrect::after {
-  content: "";
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 50%;
-  right: 5%;
-  transform: translateY(-50%);
-}
-
-.correct::after {
-  background-image: url('./assets/check-circle.svg');
-}
-
-.incorrect,
-.incorrect:focus,
-.incorrect:hover {
-  position: relative;
-  background-color: #EA8282;
-}
-
-.btn.answers.correct,
-.btn.answers.incorrect {
-  color: #fff;
-}
-
-.incorrect::after {
-  background-image: url('./assets/x-circle.svg');
-}
-
 .flag {
   width: 84px;
   height: 54px;
@@ -106,35 +74,63 @@ h1 {
     max-width: 65vw;
   }
 }
-
 @media (min-width: 500px) {
   .container {
-    height: 60%;
-    min-height: 60%;
+    height: 515px;
   }
 }
-
 .tryagain {
   text-align: center;
-  .results, p {
-    color: #1D355D;
+}
+.tryagain .results, .tryagain p {
+  color: #1D355D;
+}
+.tryagain .results {
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 72px;
+  margin-block: 2rem;
+}
+.tryagain p {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+}
+.tryagain p span {
+  font-size: 25px;
+  color: seagreen;
+  padding-inline-start: 0.5rem;
+}
+
+.adventure {
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 475px) {
+  h1 {
+    transform: translateX(-5%);
   }
-  .results {
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 72px;
-    margin-block: 2rem;
+
+  .adventure {
+    position: absolute;
+    top: -20%;
+    right: 0;
   }
-  p {
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 27px;
-    span {
-      font-size: 25px;
-      color: seagreen;
-      padding-inline-start: .5rem;
-    }
-  }
+}
+.correct::after,
+.incorrect::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+}
+
+.correct::after {
+  background-image: url("/check-circle.ba98a79f.svg");
 }
 
 .tryagain button,
@@ -167,21 +163,17 @@ h1 {
 
 .tryagain button:focus,
 .next:focus {
-  outline : none;
+  outline: none;
 }
 
 .answers {
   color: rgba(96, 102, 208, 0.7);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .btn.answers:hover {
-  color : #ffffff;
+  color: #ffffff;
   transform: scale(1.02);
-}
-
-.adventure {
-  padding-bottom: 2rem;
 }
 
 .btn {
@@ -209,45 +201,47 @@ h1 {
   content: "D";
 }
 
-.triggerCloseButton {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0.7rem;
-  border: none;
-  background-color: #fff;
+.btn {
+  display: block;
+  margin-block: 30px;
+  width: 100%;
+  padding-block: 1rem;
+  background: #FFFFFF;
+  border: 2px solid rgba(96, 102, 208, 0.7);
+  box-sizing: border-box;
+  border-radius: 12px;
   cursor: pointer;
-  line-height: 21px;
-  color: #1D355D;
-  background-image: url('./assets/menu.svg');
-  background-repeat: no-repeat;
-  span {
-    visibility: hidden;
-    padding-left: 2rem;
-  }
 }
 
-.triggerCloseButton:hover {
-  span {
-    visibility: visible;
-  }
+.btn:hover {
+  background-color: #F9A826;
 }
 
-.header__gameclosed {
-  padding-top: 3rem;
-}
-
-.triggerCloseButton:focus {
+.btn:active,
+.btn:focus {
   outline: none;
 }
 
-@media (min-width : 475px) {
-  h1 {
-    transform: translateX(-5%);
-  }
-  .adventure {
-    position: absolute;
-    top: -20%;
-    right: 0;
-  }
+.correct,
+.correct:hover {
+  position: relative;
+  background-color: #60BF88;
 }
+
+.btn.answers.correct,
+.btn.answers.incorrect {
+  color: #fff;
+}
+
+.incorrect::after {
+  background-image: url("/x-circle.c5be6a9e.svg");
+}
+
+.incorrect,
+.incorrect:focus,
+.incorrect:hover {
+  position: relative;
+  background-color: #EA8282;
+}
+
+/*# sourceMappingURL=/scss.6b84482b.css.map */

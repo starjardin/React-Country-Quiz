@@ -1,0 +1,126 @@
+.correct::after,
+.incorrect::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+}
+
+.correct::after {
+  background-image: url('../assets/check-circle.svg');
+}
+
+.tryagain button,
+.tryagain button:focus {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  color: #1D355D;
+  background-color: #FFFFFF;
+  border-radius: 24px;
+  padding-block: 1rem;
+  padding-inline: 3.5rem;
+}
+
+.next {
+  background: #F9A826;
+  box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
+  border-radius: 12px;
+  padding-inline: 36px;
+  padding-block: 15px;
+  position: absolute;
+  right: 1.5rem;
+}
+
+.tryagain button:hover,
+.next:hover {
+  background-color: #F9A826;
+  cursor: pointer;
+}
+
+.tryagain button:focus,
+.next:focus {
+  outline : none;
+}
+
+.answers {
+  color: rgba(96, 102, 208, 0.7);
+  transition: .3s;
+}
+
+.btn.answers:hover {
+  color : #ffffff;
+  transform: scale(1.02);
+}
+
+.btn {
+  position: relative;
+}
+
+.btn::before {
+  position: absolute;
+  left: 1rem;
+}
+
+.btn:nth-of-type(1)::before {
+  content: "A";
+}
+
+.btn:nth-of-type(2)::before {
+  content: "B";
+}
+
+.btn:nth-of-type(3)::before {
+  content: "C";
+}
+
+.btn:nth-of-type(4)::before {
+  content: "D";
+}
+
+.btn {
+  display: block;
+  margin-block: 30px;
+  width: 100%;
+  padding-block: 1rem;
+  background: #FFFFFF;
+  border: 2px solid rgba(96, 102, 208, 0.7);
+  box-sizing: border-box;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #F9A826;
+}
+
+.btn:active,
+.btn:focus {
+  outline: none;
+}
+
+.correct,
+.correct:hover {
+  position: relative;
+  background-color: #60BF88;
+}
+
+.btn.answers.correct,
+.btn.answers.incorrect {
+  color: #fff;
+}
+
+.incorrect::after {
+  background-image: url('../assets/x-circle.svg');
+}
+
+.incorrect,
+.incorrect:focus,
+.incorrect:hover {
+  position: relative;
+  background-color: #EA8282;
+}

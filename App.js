@@ -28,17 +28,7 @@ export default function App () {
         randomNumber2 === randomNumber4 ||
         randomNumber3 === randomNumber4
     ) {
-      return (<Router>
-        <Redirect to="/" >
-          <Questions 
-            randomNumber1={randomNumber1}
-          />
-          <Answers 
-            sortedRandomNumber={sortedRandomNumber}
-            randomNumber1={randomNumber1}
-          />
-        </Redirect>
-      </Router>)
+      return null
   }
 
   return (
