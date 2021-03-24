@@ -58,12 +58,34 @@
 }
 
 .btn {
+  display: block;
+  margin-block: 30px;
+  width: 100%;
+  background: #FFFFFF;
+  border: 2px solid rgba(96, 102, 208, 0.7);
+  box-sizing: border-box;
+  border-radius: 12px;
+  cursor: pointer;
   position: relative;
+  padding-block: 15px;
+  height: 56px;
+  span {
+    position: absolute;
+    left: 25%;
+    transform: translateY(-50%);
+    top: 50%;
+  }
+  
+  &:hover {
+    background-color: #F9A826;
+  }
 }
 
 .btn::before {
   position: absolute;
   left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .btn:nth-of-type(1)::before {
@@ -80,22 +102,6 @@
 
 .btn:nth-of-type(4)::before {
   content: "D";
-}
-
-.btn {
-  display: block;
-  margin-block: 30px;
-  width: 100%;
-  padding-block: 1rem;
-  background: #FFFFFF;
-  border: 2px solid rgba(96, 102, 208, 0.7);
-  box-sizing: border-box;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #F9A826;
 }
 
 .btn:active,

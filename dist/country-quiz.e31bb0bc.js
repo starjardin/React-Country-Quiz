@@ -34039,7 +34039,7 @@ function Answers({
     ref: countries[indexArr].name.toLowerCase().trim() === questionCountryName ? refContainer : null,
     onClick: handleAnswers,
     disabled: isQuestionAnswered
-  }, countries[indexArr].name)), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
+  }, /*#__PURE__*/_react.default.createElement("span", null, countries[indexArr].name))), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
     refContainer: refContainer,
     isAnswerCorrect: isAnswerCorrect,
     setIsQuestionAnswered: setIsQuestionAnswered
@@ -36199,7 +36199,14 @@ function App() {
   } = (0, _useRandomNumber.default)();
 
   if (!countries.length || randomNumber1 === randomNumber2 || randomNumber1 === randomNumber3 || randomNumber1 === randomNumber4 || randomNumber2 === randomNumber3 || randomNumber2 === randomNumber4 || randomNumber3 === randomNumber4) {
-    return null;
+    return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Redirect, {
+      to: "/"
+    }, /*#__PURE__*/_react.default.createElement(_Questions.default, {
+      randomNumber1: randomNumber1
+    }), /*#__PURE__*/_react.default.createElement(_Answers.default, {
+      sortedRandomNumber: sortedRandomNumber,
+      randomNumber1: randomNumber1
+    })));
   }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {

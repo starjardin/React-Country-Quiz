@@ -30,22 +30,6 @@ h1 {
   padding-bottom: 2rem;
 }
 
-.btn {
-  display: block;
-  margin-block: 1rem;
-  width: 100%;
-  padding-block: 1rem;
-  background: #FFFFFF;
-  border: 2px solid rgba(96, 102, 208, 0.7);
-  box-sizing: border-box;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #F9A826;
-}
-
 .correct,
 .correct:hover {
   position: relative;
@@ -67,16 +51,12 @@ h1 {
   position: relative;
   padding-bottom: 4rem;
   text-align: center;
+  border-radius: 24px;
 }
 
 @media (max-width: 500px) {
   .container {
     max-width: 65vw;
-  }
-}
-@media (min-width: 500px) {
-  .container {
-    height: 515px;
   }
 }
 .tryagain {
@@ -177,12 +157,33 @@ h1 {
 }
 
 .btn {
+  display: block;
+  margin-block: 30px;
+  width: 100%;
+  background: #FFFFFF;
+  border: 2px solid rgba(96, 102, 208, 0.7);
+  box-sizing: border-box;
+  border-radius: 12px;
+  cursor: pointer;
   position: relative;
+  padding-block: 15px;
+  height: 56px;
+}
+.btn span {
+  position: absolute;
+  left: 25%;
+  transform: translateY(-50%);
+  top: 50%;
+}
+.btn:hover {
+  background-color: #F9A826;
 }
 
 .btn::before {
   position: absolute;
   left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .btn:nth-of-type(1)::before {
@@ -199,22 +200,6 @@ h1 {
 
 .btn:nth-of-type(4)::before {
   content: "D";
-}
-
-.btn {
-  display: block;
-  margin-block: 30px;
-  width: 100%;
-  padding-block: 1rem;
-  background: #FFFFFF;
-  border: 2px solid rgba(96, 102, 208, 0.7);
-  box-sizing: border-box;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #F9A826;
 }
 
 .btn:active,
