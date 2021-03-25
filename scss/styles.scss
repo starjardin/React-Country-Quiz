@@ -45,23 +45,19 @@ h1 {
 .container {
   background-color: #ffffff;
   padding: 1.5rem;
-  border-radius: 5px;
   max-width: 464px;
   margin: auto;
   position: relative;
   padding-bottom: 4rem;
   text-align: center;
   border-radius: 24px;
-}
-
-@media (max-width: 500px) {
-  .container {
-    max-width: 65vw;
-  }
+  margin-bottom: 2rem;
 }
 
 .tryagain {
   text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 0;
   .results, p {
     color: #1D355D;
   }
@@ -70,14 +66,17 @@ h1 {
     font-size: 48px;
     line-height: 72px;
     margin-block: 2rem;
+    margin-top: 63px;
   }
   p {
     font-weight: 700;
     font-size: 18px;
     line-height: 27px;
     span {
-      font-size: 25px;
-      color: seagreen;
+      font-size: 40px;
+      color: #60BF88;
+      font-weight: 900;
+      line-height: 23px;
       padding-inline-start: .5rem;
     }
   }
@@ -87,13 +86,13 @@ h1 {
   padding-bottom: 2rem;
 }
 
-@media (min-width : 475px) {
+@media (min-width : 500px) {
   h1 {
     transform: translateX(-5%);
   }
   .adventure {
     position: absolute;
-    top: -20%;
+    top: -10%;
     right: 0;
   }
 }

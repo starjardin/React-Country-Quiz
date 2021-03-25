@@ -46,9 +46,9 @@ export default function App () {
       <Header />
       <Router >
         <div className="container">
-          <TopRightImage />
           <Switch>
             <Route exact path="/">
+              <TopRightImage />
               <Questions 
                 randomNumber1={randomNumber1}
               />

@@ -1,13 +1,9 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
 
 import { CountriesContext } from '../context/countriesContext'
 import winners from "./../assets/winners.svg"
 
-const TryAgainStyles = styled.div`
-  height: 542px;
-`
 
 export default function ButtonNext () {
 
@@ -21,7 +17,7 @@ export default function ButtonNext () {
   const { getCountries, score, setScore } = useContext(CountriesContext)
   return (
     <>
-      <TryAgainStyles className="tryagain">
+      <div className="tryagain">
         <img src={winners} alt="winner"/>
         <h3 className="results">Results</h3>
         <p>You got <span>{score}</span> correct answers</p>
@@ -47,7 +43,7 @@ export default function ButtonNext () {
             Try again
           </button>
         </Link>
-      </TryAgainStyles>
+      </div>
     </>
   )
 }

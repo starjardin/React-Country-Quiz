@@ -40,7 +40,7 @@ export default function Answers({ sortedRandomNumber, randomNumber1 }) {
           onClick={handleAnswers}
           disabled={isQuestionAnswered}
         >
-          <span>{countries[indexArr].name}</span>
+          { countries[ indexArr ].name }
         </button>
       ))
       }

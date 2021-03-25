@@ -1,3 +1,36 @@
+.btn {
+  display: block;
+  margin-block: 30px;
+  width: 100%;
+  background: #FFFFFF;
+  border: 2px solid rgba(96, 102, 208, 0.7);
+  box-sizing: border-box;
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  padding-block: 15px;
+  min-height: 56px;
+  text-align: start;
+  padding-inline-start: 82px;
+  span {
+    position: absolute;
+    left: 25%;
+    transform: translateY(-50%);
+    top: 50%;
+  }
+  
+  &:hover {
+    background-color: #F9A826;
+  }
+}
+
+.btn::before {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .correct::after,
 .incorrect::after {
   content: "";
@@ -22,8 +55,9 @@
   color: #1D355D;
   background-color: #FFFFFF;
   border-radius: 24px;
-  padding-block: 1rem;
-  padding-inline: 3.5rem;
+  padding-block: 18px;
+  padding-inline: 61px;
+  margin-top: 74px;
 }
 
 .next {
@@ -55,37 +89,6 @@
 .btn.answers:hover {
   color : #ffffff;
   transform: scale(1.02);
-}
-
-.btn {
-  display: block;
-  margin-block: 30px;
-  width: 100%;
-  background: #FFFFFF;
-  border: 2px solid rgba(96, 102, 208, 0.7);
-  box-sizing: border-box;
-  border-radius: 12px;
-  cursor: pointer;
-  position: relative;
-  padding-block: 15px;
-  height: 56px;
-  span {
-    position: absolute;
-    left: 25%;
-    transform: translateY(-50%);
-    top: 50%;
-  }
-  
-  &:hover {
-    background-color: #F9A826;
-  }
-}
-
-.btn::before {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .btn:nth-of-type(1)::before {

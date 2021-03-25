@@ -33910,7 +33910,6 @@ const API_KEY = "https://restcountries.eu/rest/v2/all";
 function CountriesContextProvider(props) {
   const [countries, setCountriesName] = (0, _react.useState)([]);
   const [score, setScore] = (0, _react.useState)(0);
-  const [isGameClosed, setIsGameClosed] = (0, _react.useState)(false);
 
   const getCountries = async () => {
     const res = await fetch(API_KEY);
@@ -33926,9 +33925,7 @@ function CountriesContextProvider(props) {
       countries,
       getCountries,
       score,
-      setScore,
-      isGameClosed,
-      setIsGameClosed
+      setScore
     }
   }, props.children);
 }
@@ -34039,7 +34036,7 @@ function Answers({
     ref: countries[indexArr].name.toLowerCase().trim() === questionCountryName ? refContainer : null,
     onClick: handleAnswers,
     disabled: isQuestionAnswered
-  }, /*#__PURE__*/_react.default.createElement("span", null, countries[indexArr].name))), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
+  }, countries[indexArr].name)), isQuestionAnswered && /*#__PURE__*/_react.default.createElement(_ButtonNext.default, {
     refContainer: refContainer,
     isAnswerCorrect: isAnswerCorrect,
     setIsQuestionAnswered: setIsQuestionAnswered
@@ -34070,7 +34067,56 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Header() {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, "Country Quiz"));
 }
-},{"react":"node_modules/react/index.js"}],"node_modules/shallowequal/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"assets/winners.svg":[function(require,module,exports) {
+module.exports = "/winners.b80fe258.svg";
+},{}],"components/ButtonTryAgain.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ButtonNext;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _countriesContext = require("../context/countriesContext");
+
+var _winners = _interopRequireDefault(require("./../assets/winners.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function ButtonNext() {
+  function handleTryAgainButtonClick() {
+    getCountries();
+    setScore(0);
+  }
+
+  const pizzas = "🍕";
+  const {
+    getCountries,
+    score,
+    setScore
+  } = (0, _react.useContext)(_countriesContext.CountriesContext);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "tryagain"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _winners.default,
+    alt: "winner"
+  }), /*#__PURE__*/_react.default.createElement("h3", {
+    className: "results"
+  }, "Results"), /*#__PURE__*/_react.default.createElement("p", null, "You got ", /*#__PURE__*/_react.default.createElement("span", null, score), " correct answers"), /*#__PURE__*/_react.default.createElement("p", null, score != 0 && `Here is your reward : ${score} ${score > 1 ? " slices of pizzas" : "slice of pizza"} ${pizzas.repeat(score)}`), /*#__PURE__*/_react.default.createElement("p", null, score > 5 && score <= 10 && "Good score . Why don't you try again, you'll get heigher score"), /*#__PURE__*/_react.default.createElement("p", null, score > 10 && score <= 15 && "Amaizing! You are a good canditate"), /*#__PURE__*/_react.default.createElement("p", null, score > 15 && score < 250 && "Amaizing! You beat the best players"), /*#__PURE__*/_react.default.createElement("p", null, score > 250 && "Congratulations! You know about all of the contries"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    onClick: handleTryAgainButtonClick
+  }, "Try again"))));
+}
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../context/countriesContext":"context/countriesContext.js","./../assets/winners.svg":"assets/winners.svg"}],"node_modules/shallowequal/index.js":[function(require,module,exports) {
 //
 
 module.exports = function shallowEqual(objA, objB, compare, compareContext) {
@@ -35991,62 +36037,7 @@ exports.ServerStyleSheet = Ue;
 "production" !== "development" && "undefined" != typeof navigator && "ReactNative" === navigator.product && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://www.styled-components.com/docs/basics#react-native"), "production" !== "development" && "test" !== "development" && (window["__styled-components-init__"] = window["__styled-components-init__"] || 0, 1 === window["__styled-components-init__"] && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://s-c.sh/2BAXzed for more info."), window["__styled-components-init__"] += 1);
 var _default = qe;
 exports.default = _default;
-},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js"}],"assets/winners.svg":[function(require,module,exports) {
-module.exports = "/winners.b80fe258.svg";
-},{}],"components/ButtonTryAgain.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = ButtonNext;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactRouterDom = require("react-router-dom");
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-var _countriesContext = require("../context/countriesContext");
-
-var _winners = _interopRequireDefault(require("./../assets/winners.svg"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-const TryAgainStyles = _styledComponents.default.div`
-  height: 542px;
-`;
-
-function ButtonNext() {
-  function handleTryAgainButtonClick() {
-    getCountries();
-    setScore(0);
-  }
-
-  const pizzas = "🍕";
-  const {
-    getCountries,
-    score,
-    setScore
-  } = (0, _react.useContext)(_countriesContext.CountriesContext);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(TryAgainStyles, {
-    className: "tryagain"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: _winners.default,
-    alt: "winner"
-  }), /*#__PURE__*/_react.default.createElement("h3", {
-    className: "results"
-  }, "Results"), /*#__PURE__*/_react.default.createElement("p", null, "You got ", /*#__PURE__*/_react.default.createElement("span", null, score), " correct answers"), /*#__PURE__*/_react.default.createElement("p", null, score != 0 && `Here is your reward : ${score} ${score > 1 ? " slices of pizzas" : "slice of pizza"} ${pizzas.repeat(score)}`), /*#__PURE__*/_react.default.createElement("p", null, score > 5 && score <= 10 && "Good score . Why don't you try again, you'll get heigher score"), /*#__PURE__*/_react.default.createElement("p", null, score > 10 && score <= 15 && "Amaizing! You are a good canditate"), /*#__PURE__*/_react.default.createElement("p", null, score > 15 && score < 250 && "Amaizing! You beat the best players"), /*#__PURE__*/_react.default.createElement("p", null, score > 250 && "Congratulations! You know about all of the contries"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    onClick: handleTryAgainButtonClick
-  }, "Try again"))));
-}
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../context/countriesContext":"context/countriesContext.js","./../assets/winners.svg":"assets/winners.svg"}],"components/Questions.js":[function(require,module,exports) {
+},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js"}],"components/Questions.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36068,6 +36059,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 const QuestionsContainer = _styledComponents.default.div`
   min-height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 2.5rem;
   div {
     text-align: start;
   }
@@ -36211,10 +36206,10 @@ function App() {
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
-  }, /*#__PURE__*/_react.default.createElement(_TopRightImage.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/"
-  }, /*#__PURE__*/_react.default.createElement(_Questions.default, {
+  }, /*#__PURE__*/_react.default.createElement(_TopRightImage.default, null), /*#__PURE__*/_react.default.createElement(_Questions.default, {
     randomNumber1: randomNumber1
   }), /*#__PURE__*/_react.default.createElement(_Answers.default, {
     sortedRandomNumber: sortedRandomNumber,
@@ -36265,7 +36260,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52438" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58344" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

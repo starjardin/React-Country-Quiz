@@ -6,7 +6,6 @@ const API_KEY = "https://restcountries.eu/rest/v2/all"
 function CountriesContextProvider (props) {
   const [countries, setCountriesName] = useState([])
   const [score, setScore] = useState(0)
-  const [isGameClosed, setIsGameClosed] = useState(false)
 
   const getCountries = async () => {
     const res = await fetch(API_KEY)
@@ -25,8 +24,6 @@ function CountriesContextProvider (props) {
         getCountries,
         score,
         setScore,
-        isGameClosed,
-        setIsGameClosed
       }}
     >
       {props.children}
