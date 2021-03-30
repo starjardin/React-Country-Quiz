@@ -4,10 +4,6 @@ import styled from 'styled-components'
 import { CountriesContext } from '../context/countriesContext'
 
 const QuestionsContainer = styled.div`
-  min-height: 6rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   padding-top: 2.5rem;
   div {
     text-align: start;

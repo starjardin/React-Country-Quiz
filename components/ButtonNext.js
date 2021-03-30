@@ -19,21 +19,23 @@ export default function ButtonNext ({
 
   return (
     <>
-      {isAnswerCorrect ? 
-        <button 
-          onClick={handleNextButtonClick}
-          className="next"
-        >
-          Next
-        </button> :
-        <Link to="/tryAgain">
+      <div className="btn-next-container">
+        {isAnswerCorrect ? 
           <button 
+            onClick={handleNextButtonClick}
             className="next"
           >
             Next
-          </button>
-        </Link>
-      }
+          </button> :
+          <Link to="/tryAgain">
+            <button 
+              className="next"
+            >
+              Next
+            </button>
+          </Link>
+        }
+      </div>
     </>
   )
 }

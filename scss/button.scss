@@ -57,7 +57,7 @@
   border-radius: 24px;
   padding-block: 18px;
   padding-inline: 61px;
-  margin-top: 74px;
+  margin-top: 61px;
 }
 
 .next {
@@ -66,8 +66,13 @@
   border-radius: 12px;
   padding-inline: 36px;
   padding-block: 15px;
-  position: absolute;
-  right: 1.5rem;
+}
+
+.btn-next-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
 }
 
 .tryagain button:hover,

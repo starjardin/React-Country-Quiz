@@ -6,6 +6,7 @@ import winners from "./../assets/winners.svg"
 
 
 export default function ButtonNext () {
+  const { getCountries, score, setScore } = useContext(CountriesContext)
 
   function handleTryAgainButtonClick () {
     getCountries()
@@ -14,7 +15,6 @@ export default function ButtonNext () {
 
   const pizzas = "🍕"
 
-  const { getCountries, score, setScore } = useContext(CountriesContext)
   return (
     <>
       <div className="tryagain">

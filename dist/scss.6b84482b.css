@@ -2,7 +2,6 @@ html {
   background-image: url("/background.f2f908d8.png");
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100vw;
   min-height: -webkit-fill-available;
   font-family: Poppins;
   font-style: normal;
@@ -17,6 +16,7 @@ html {
   font-size: 24px;
   line-height: 36px;
   color: #2F527B;
+  margin-bottom: 32px;
 }
 
 h1 {
@@ -44,11 +44,11 @@ h1 {
 
 .container {
   background-color: #ffffff;
-  padding: 1.5rem;
+  padding: 32px;
   max-width: 464px;
   margin: auto;
   position: relative;
-  padding-bottom: 4rem;
+  padding-bottom: calc(68px - 30px);
   text-align: center;
   border-radius: 24px;
   margin-bottom: 2rem;
@@ -56,7 +56,7 @@ h1 {
 
 .tryagain {
   text-align: center;
-  padding-top: 3rem;
+  padding-top: 20px;
   padding-bottom: 0;
 }
 .tryagain .results, .tryagain p {
@@ -73,6 +73,7 @@ h1 {
   font-weight: 700;
   font-size: 18px;
   line-height: 27px;
+  margin-bottom: 0;
 }
 .tryagain p span {
   font-size: 40px;
@@ -93,7 +94,7 @@ h1 {
 
   .adventure {
     position: absolute;
-    top: -10%;
+    top: -12%;
     right: 0;
   }
 }
@@ -155,7 +156,7 @@ h1 {
   border-radius: 24px;
   padding-block: 18px;
   padding-inline: 61px;
-  margin-top: 74px;
+  margin-top: 61px;
 }
 
 .next {
@@ -164,8 +165,13 @@ h1 {
   border-radius: 12px;
   padding-inline: 36px;
   padding-block: 15px;
-  position: absolute;
-  right: 1.5rem;
+}
+
+.btn-next-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
 }
 
 .tryagain button:hover,

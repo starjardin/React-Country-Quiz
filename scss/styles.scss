@@ -2,7 +2,6 @@ html {
   background-image: url("../assets/background.png");
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100vw;
   min-height: -webkit-fill-available;
   font-family: Poppins;
   font-style: normal;
@@ -17,6 +16,7 @@ html {
   font-size: 24px;
   line-height: 36px;
   color: #2F527B;
+  margin-bottom: 32px;
 }
 
 h1 {
@@ -44,11 +44,11 @@ h1 {
 
 .container {
   background-color: #ffffff;
-  padding: 1.5rem;
+  padding: 32px;
   max-width: 464px;
   margin: auto;
   position: relative;
-  padding-bottom: 4rem;
+  padding-bottom: calc(68px - 30px);
   text-align: center;
   border-radius: 24px;
   margin-bottom: 2rem;
@@ -56,7 +56,7 @@ h1 {
 
 .tryagain {
   text-align: center;
-  padding-top: 3rem;
+  padding-top: 20px;
   padding-bottom: 0;
   .results, p {
     color: #1D355D;
@@ -72,6 +72,7 @@ h1 {
     font-weight: 700;
     font-size: 18px;
     line-height: 27px;
+    margin-bottom: 0;
     span {
       font-size: 40px;
       color: #60BF88;
@@ -92,7 +93,7 @@ h1 {
   }
   .adventure {
     position: absolute;
-    top: -10%;
+    top: -12%;
     right: 0;
   }
 }

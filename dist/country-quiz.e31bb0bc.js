@@ -33964,14 +33964,16 @@ function ButtonNext({
     setIsQuestionAnswered(false);
   }
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, isAnswerCorrect ? /*#__PURE__*/_react.default.createElement("button", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "btn-next-container"
+  }, isAnswerCorrect ? /*#__PURE__*/_react.default.createElement("button", {
     onClick: handleNextButtonClick,
     className: "next"
   }, "Next") : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/tryAgain"
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "next"
-  }, "Next")));
+  }, "Next"))));
 }
 },{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../context/countriesContext":"context/countriesContext.js"}],"components/Answers.js":[function(require,module,exports) {
 "use strict";
@@ -34092,17 +34094,18 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ButtonNext() {
+  const {
+    getCountries,
+    score,
+    setScore
+  } = (0, _react.useContext)(_countriesContext.CountriesContext);
+
   function handleTryAgainButtonClick() {
     getCountries();
     setScore(0);
   }
 
   const pizzas = "🍕";
-  const {
-    getCountries,
-    score,
-    setScore
-  } = (0, _react.useContext)(_countriesContext.CountriesContext);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "tryagain"
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -36058,10 +36061,6 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const QuestionsContainer = _styledComponents.default.div`
-  min-height: 6rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   padding-top: 2.5rem;
   div {
     text-align: start;
@@ -36260,7 +36259,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58344" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50295" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
