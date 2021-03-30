@@ -39,7 +39,7 @@ h1 {
 .flag {
   width: 84px;
   height: 54px;
-  box-shadow: 1px 1px 1px 1px #cccccc;
+  filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));
 }
 
 .container {
@@ -99,6 +99,7 @@ h1 {
   }
 }
 .btn {
+  font-family: "Poppins";
   display: block;
   margin-block: 30px;
   width: 100%;
@@ -112,6 +113,9 @@ h1 {
   min-height: 56px;
   text-align: start;
   padding-inline-start: 82px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
 }
 .btn span {
   position: absolute;
