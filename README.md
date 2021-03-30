@@ -47,11 +47,11 @@
 -   You can see my demo in the following link 
     <a href="https://country-quiz-tantely.netlify.app/">
       Work Demo
-    </a>. The project was fun to play with, I loved it. Most of the users stories are accomplished. You can see already the questions are displayed as well as the answers. You can also choose an answer for each question. I went a bit for an extra mile I added some sound when the users click and answer, I wanted to experiment, I also added one state that closes and opens the game.
+    </a>. The project was fun to play with, I loved it. Most of the users stories are accomplished. You can see already the questions are displayed as well as the answers. You can also choose an answer for each question.
 
 -   My experience was when I was working out a big statement, I needed to break it down into as small as possible parts. It is much easier to handle it little by little. Figuring out what the app does is very important before you dive into coding.
 
--   Well, This has been a lot of fun, I learned using custom hooks which I am happy with. I also learned to use proptypes but so far it's still blury but I am sure in long time of practice it will come easely.
+-   Well, This has been a lot of fun, I learned using custom hooks which I am happy with. I also learned to use proptypes, react context, react hooks.
 
 -   One thing I think is a wisdom that I would like to share is : it is very crucial to have a general idea about what the app is doing and start to break big problems to smaller once before diving into coding. No matter how tough it is, break the big problems down into as small parts as possible before tackling them. If you have a good base the likelyhood of having a good end is very heigh.
 
@@ -83,4 +83,4 @@ $ npm start
 
 ## Description
 
-The main purpose of this app is for practicing react (react hooks). This is a challenge from <a href="https://devChallenges.io">devChallenges.io</a> for front-end developers to boost their knowledge and their tool belt for their future. 
+The main purpose of this app is for practicing react (react hooks). It's important to know react hooks because they will save you tones of time and make your app look better and robust.
