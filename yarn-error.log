@@ -1,0 +1,68 @@
+Arguments: 
+  /snap/node/4594/bin/node /usr/local/bin/yarn add parcel-bundler --dev
+
+PATH: 
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/student/Android/Sdk/emulator:/home/student/Android/Sdk/tools:/home/student/Android/Sdk/tools/bin:/home/student/Android/Sdk/platform-tools
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.17.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: connect EHOSTUNREACH 192.168.1.46:4873
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+
+npm manifest: 
+  {
+    "dependencies": {
+      "prototypes": "^3.0.2",
+      "react": "^17.0.1",
+      "react-dom": "^17.0.1",
+      "react-router-dom": "^5.2.0",
+      "styled-components": "^5.2.1"
+    },
+    "name": "country-quiz",
+    "description": "Challenge: Create a country quiz app using an API, and use React to handle the frontend. Don’t look at the existing solution. Fulfill user stories below:",
+    "version": "1.0.0",
+    "main": "index.js",
+    "devDependencies": {
+      "sass": "^1.29.0"
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "parcel index.html"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/starjardin/country-quiz.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/starjardin/country-quiz/issues"
+    },
+    "homepage": "https://github.com/starjardin/country-quiz#readme",
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
