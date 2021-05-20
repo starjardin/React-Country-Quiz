@@ -1,5 +1,4 @@
 export const shuffleArray = (countries) => {
-  // const { countries } = useContext(CountriesContext)
   let arr = []
   for (let i = 1; i <= countries.length; i++) {
     arr.push(i)
@@ -17,7 +16,9 @@ export const shuffleArray = (countries) => {
   const random3 = result[21]
   const random4 = result[11]
   return {
-    sortedRandomNumber: [random1, random2, random3, random4],
+    uniqueRandomNumbers: [random1, random2, random3, random4].sort(
+      (a, b) => a - b
+    ),
     random1,
   }
 }

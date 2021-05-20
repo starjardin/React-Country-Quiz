@@ -33975,42 +33975,7 @@ function ButtonNext({
     className: "next"
   }, "Next"))));
 }
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../context/countriesContext":"context/countriesContext.js"}],"utils/useRandomNumber.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.shuffleArray = void 0;
-
-const shuffleArray = countries => {
-  // const { countries } = useContext(CountriesContext)
-  let arr = [];
-
-  for (let i = 1; i <= countries.length; i++) {
-    arr.push(i);
-  }
-
-  let result = [];
-
-  for (let i = 1; i <= countries.length; i++) {
-    const random = Math.floor(Math.random() * (countries.length - i));
-    result.push(arr[random]);
-    arr[random] = arr[countries.length - i];
-  }
-
-  const random1 = result[1];
-  const random2 = result[3];
-  const random3 = result[21];
-  const random4 = result[11];
-  return {
-    sortedRandomNumber: [random1, random2, random3, random4],
-    random1
-  };
-};
-
-exports.shuffleArray = shuffleArray;
-},{}],"components/Answers.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../context/countriesContext":"context/countriesContext.js"}],"components/Answers.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34028,8 +33993,6 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _countriesContext = require("../context/countriesContext");
 
-var _useRandomNumber = require("../utils/useRandomNumber");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -34037,7 +34000,7 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function Answers({
-  sortedRandomNumber,
+  uniqueRandomNumbers,
   randomNumber1
 }) {
   const {
@@ -34050,7 +34013,6 @@ function Answers({
   } = (0, _react.useContext)(_countriesContext.CountriesContext);
   const [isAnswerCorrect, setIsAnswerCorrect] = (0, _react.useState)(false);
   const [isQuestionAnswered, setIsQuestionAnswered] = (0, _react.useState)(false);
-  (0, _useRandomNumber.shuffleArray)(countries.length, countries.length);
   const questionCountryName = countries[randomNumber1].name.toLowerCase().trim();
 
   function handleAnswers(e) {
@@ -34069,7 +34031,7 @@ function Answers({
     }
   }
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, sortedRandomNumber.map((indexArr, index) => /*#__PURE__*/_react.default.createElement("button", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, uniqueRandomNumbers.map((indexArr, index) => /*#__PURE__*/_react.default.createElement("button", {
     key: index,
     className: "btn answers",
     "data-value": countries[indexArr].name,
@@ -34092,7 +34054,7 @@ Answers.propTypes = {
   score: _propTypes.default.number,
   getCountries: _propTypes.default.func
 };
-},{"react":"node_modules/react/index.js","../utils/useAddSound":"utils/useAddSound.js","./ButtonNext":"components/ButtonNext.js","prop-types":"node_modules/prop-types/index.js","../context/countriesContext":"context/countriesContext.js","../utils/useRandomNumber":"utils/useRandomNumber.js"}],"components/Header.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../utils/useAddSound":"utils/useAddSound.js","./ButtonNext":"components/ButtonNext.js","prop-types":"node_modules/prop-types/index.js","../context/countriesContext":"context/countriesContext.js"}],"components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36150,7 +36112,41 @@ function TopRightImage() {
     className: "adventure"
   });
 }
-},{"react":"node_modules/react/index.js","./../assets/adventure.svg":"assets/adventure.svg"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./../assets/adventure.svg":"assets/adventure.svg"}],"utils/useRandomNumber.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.shuffleArray = void 0;
+
+const shuffleArray = countries => {
+  let arr = [];
+
+  for (let i = 1; i <= countries.length; i++) {
+    arr.push(i);
+  }
+
+  let result = [];
+
+  for (let i = 1; i <= countries.length; i++) {
+    const random = Math.floor(Math.random() * (countries.length - i));
+    result.push(arr[random]);
+    arr[random] = arr[countries.length - i];
+  }
+
+  const random1 = result[1];
+  const random2 = result[3];
+  const random3 = result[21];
+  const random4 = result[11];
+  return {
+    uniqueRandomNumbers: [random1, random2, random3, random4].sort((a, b) => a - b),
+    random1
+  };
+};
+
+exports.shuffleArray = shuffleArray;
+},{}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36192,7 +36188,7 @@ function App() {
   }
 
   const {
-    sortedRandomNumber,
+    uniqueRandomNumbers,
     random1
   } = (0, _useRandomNumber.shuffleArray)(countries);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {
@@ -36203,7 +36199,7 @@ function App() {
   }, /*#__PURE__*/_react.default.createElement(_TopRightImage.default, null), /*#__PURE__*/_react.default.createElement(_Questions.default, {
     randomNumber1: random1
   }), /*#__PURE__*/_react.default.createElement(_Answers.default, {
-    sortedRandomNumber: sortedRandomNumber,
+    uniqueRandomNumbers: uniqueRandomNumbers,
     randomNumber1: random1
   })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/tryAgain"

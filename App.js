@@ -1,10 +1,5 @@
 import React, { useContext } from 'react'
-import {
-  Route,
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-} from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Answers from './components/Answers'
 import Header from './components/Header'
 import ButtonTryAgain from './components/ButtonTryAgain'
@@ -19,7 +14,7 @@ export default function App() {
   if (!countries.length) {
     return null
   }
-  const { sortedRandomNumber, random1 } = shuffleArray(countries)
+  const { uniqueRandomNumbers, random1 } = shuffleArray(countries)
   return (
     <>
       <Header />
@@ -30,7 +25,7 @@ export default function App() {
               <TopRightImage />
               <Questions randomNumber1={random1} />
               <Answers
-                sortedRandomNumber={sortedRandomNumber}
+                uniqueRandomNumbers={uniqueRandomNumbers}
                 randomNumber1={random1}
               />
             </Route>

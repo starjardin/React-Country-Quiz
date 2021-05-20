@@ -103,7 +103,7 @@ h1 {
   display: block;
   margin-block: 30px;
   width: 100%;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 2px solid rgba(96, 102, 208, 0.7);
   box-sizing: border-box;
   border-radius: 12px;
@@ -113,6 +113,7 @@ h1 {
   min-height: 56px;
   text-align: start;
   padding-inline-start: 82px;
+  padding-inline-end: 52px;
   font-weight: 500;
   font-size: 18px;
   line-height: 27px;
@@ -122,9 +123,10 @@ h1 {
   left: 25%;
   transform: translateY(-50%);
   top: 50%;
+  width: 80%;
 }
 .btn:hover {
-  background-color: #F9A826;
+  background-color: #f9a826;
 }
 
 .btn::before {
@@ -155,8 +157,8 @@ h1 {
   font-weight: 600;
   font-size: 18px;
   line-height: 27px;
-  color: #1D355D;
-  background-color: #FFFFFF;
+  color: #1d355d;
+  background-color: #ffffff;
   border-radius: 24px;
   padding-block: 18px;
   padding-inline: 61px;
@@ -164,7 +166,7 @@ h1 {
 }
 
 .next {
-  background: #F9A826;
+  background: #f9a826;
   box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
   border-radius: 12px;
   padding-inline: 36px;
@@ -180,7 +182,7 @@ h1 {
 
 .tryagain button:hover,
 .next:hover {
-  background-color: #F9A826;
+  background-color: #f9a826;
   cursor: pointer;
 }
 
@@ -223,7 +225,7 @@ h1 {
 .correct,
 .correct:hover {
   position: relative;
-  background-color: #60BF88;
+  background-color: #60bf88;
 }
 
 .btn.answers.correct,
@@ -239,7 +241,7 @@ h1 {
 .incorrect:focus,
 .incorrect:hover {
   position: relative;
-  background-color: #EA8282;
+  background-color: #ea8282;
 }
 
 /*# sourceMappingURL=/scss.6b84482b.css.map */

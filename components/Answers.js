@@ -4,15 +4,13 @@ import useAddSound from '../utils/useAddSound'
 import ButtonNext from './ButtonNext'
 import propTypes from 'prop-types'
 import { CountriesContext } from '../context/countriesContext'
-import { shuffleArray } from '../utils/useRandomNumber'
 
-export default function Answers({ sortedRandomNumber, randomNumber1 }) {
+export default function Answers({ uniqueRandomNumbers, randomNumber1 }) {
   const { addTrueBuzzSound, addFalseBuzzSound } = useAddSound()
   let refContainer = useRef(null)
   const { countries } = useContext(CountriesContext)
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false)
   const [isQuestionAnswered, setIsQuestionAnswered] = useState(false)
-  shuffleArray(countries.length, countries.length)
 
   const questionCountryName = countries[randomNumber1].name.toLowerCase().trim()
 
@@ -33,7 +31,7 @@ export default function Answers({ sortedRandomNumber, randomNumber1 }) {
 
   return (
     <>
-      {sortedRandomNumber.map((indexArr, index) => (
+      {uniqueRandomNumbers.map((indexArr, index) => (
         <button
           key={index}
           className='btn answers'

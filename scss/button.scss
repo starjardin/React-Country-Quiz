@@ -1,9 +1,9 @@
 .btn {
-  font-family: "Poppins";
+  font-family: 'Poppins';
   display: block;
   margin-block: 30px;
   width: 100%;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 2px solid rgba(96, 102, 208, 0.7);
   box-sizing: border-box;
   border-radius: 12px;
@@ -13,18 +13,20 @@
   min-height: 56px;
   text-align: start;
   padding-inline-start: 82px;
+  padding-inline-end: 52px;
   font-weight: 500;
   font-size: 18px;
-    line-height: 27px;
+  line-height: 27px;
   span {
     position: absolute;
     left: 25%;
     transform: translateY(-50%);
     top: 50%;
+    width: 80%;
   }
-  
+
   &:hover {
-    background-color: #F9A826;
+    background-color: #f9a826;
   }
 }
 
@@ -37,7 +39,7 @@
 
 .correct::after,
 .incorrect::after {
-  content: "";
+  content: '';
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -56,8 +58,8 @@
   font-weight: 600;
   font-size: 18px;
   line-height: 27px;
-  color: #1D355D;
-  background-color: #FFFFFF;
+  color: #1d355d;
+  background-color: #ffffff;
   border-radius: 24px;
   padding-block: 18px;
   padding-inline: 61px;
@@ -65,7 +67,7 @@
 }
 
 .next {
-  background: #F9A826;
+  background: #f9a826;
   box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
   border-radius: 12px;
   padding-inline: 36px;
@@ -81,39 +83,39 @@
 
 .tryagain button:hover,
 .next:hover {
-  background-color: #F9A826;
+  background-color: #f9a826;
   cursor: pointer;
 }
 
 .tryagain button:focus,
 .next:focus {
-  outline : none;
+  outline: none;
 }
 
 .answers {
   color: rgba(96, 102, 208, 0.7);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .btn.answers:hover {
-  color : #ffffff;
+  color: #ffffff;
   transform: scale(1.02);
 }
 
 .btn:nth-of-type(1)::before {
-  content: "A";
+  content: 'A';
 }
 
 .btn:nth-of-type(2)::before {
-  content: "B";
+  content: 'B';
 }
 
 .btn:nth-of-type(3)::before {
-  content: "C";
+  content: 'C';
 }
 
 .btn:nth-of-type(4)::before {
-  content: "D";
+  content: 'D';
 }
 
 .btn:active,
@@ -124,7 +126,7 @@
 .correct,
 .correct:hover {
   position: relative;
-  background-color: #60BF88;
+  background-color: #60bf88;
 }
 
 .btn.answers.correct,
@@ -140,5 +142,5 @@
 .incorrect:focus,
 .incorrect:hover {
   position: relative;
-  background-color: #EA8282;
+  background-color: #ea8282;
 }
