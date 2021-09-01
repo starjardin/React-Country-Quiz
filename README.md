@@ -72,4 +72,4 @@ $ npm start
 
 ## Description
 
-The main purpose of this app is for practicing react (react hooks). It's important to know react hooks because they will save you tones of time and make your app look better and robust.
+The app displays a quiz that allows a user to select an option given four options. For each round, users are asked to guess a name of a country given the flag or the capital of a country. The goal for users is to achieve the high score possible. I used React Context, React Hooks and Styled-components.
